@@ -3,17 +3,7 @@ import type { LandingEntry } from '../../types';
 export const supportEntry: LandingEntry = {
     id: 'support',
     i18n: {
-        en: () => Promise.resolve({
-            slug: 'support',
-            title: 'Support',
-            subtitle: 'Get help and support',
-            description: 'Find contact information and support channels for GameBob services.'
-        }),
-        es: () => Promise.resolve({
-            slug: 'soporte',
-            title: 'Soporte',
-            subtitle: 'Obtén ayuda y soporte',
-            description: 'Encuentra información de contacto y canales de soporte para los servicios de GameBob.'
-        })
+        en: () => import('./i18n/en').then((m) => m.cardContent),
+        es: () => import('./i18n/es').then((m) => m.cardContent),
     }
 };
