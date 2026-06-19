@@ -1,0 +1,165 @@
+---
+import PreviewLayout from '../layouts/PreviewLayout.astro';
+import PreviewNavSidebar from '../components/PreviewNavSidebar.astro';
+import { ALL_LANDING_DEFINITIONS } from '../entries';
+import type { KnownLocale, LandingCardContent } from '../types';
+
+export async function getStaticPaths() {
+    const locales: KnownLocale[] = ['es', 'en', 'fr', 'de', 'it', 'pt', 'nl', 'sv', 'pl', 'id', 'tr', 'ru', 'ja', 'ko', 'zh'];
+    return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: KnownLocale };
+
+const landingsWithContent = await Promise.all(
+    ALL_LANDING_DEFINITIONS.map(async ({ entry }) => {
+        const loader = entry.i18n[locale] ?? entry.i18n.en;
+        const card: LandingCardContent = await loader!();
+        return { entry, card };
+    })
+);
+---
+
+<PreviewLayout title="Landings · preview" currentLocale={locale} hasSidebar={true}>
+    <PreviewNavSidebar
+        slot="sidebar"
+        categoryTitle="Landings"
+        apps={landingsWithContent.map(({ entry, card }) => ({
+            id: entry.id,
+            title: card.title,
+            href: `/${locale}/${card.slug}`,
+        }))}
+    />
+
+    <div class="dashboard">
+        <header class="preview-header">
+            <span class="badge">preview · @jjlmoya/landings</span>
+            <h1>Landings</h1>
+        </header>
+
+        <div class="app-list">
+            {
+                landingsWithContent.map(({ entry, card }) => (
+                    <article class="app-card">
+                        <a href={`/${locale}/${card.slug}`} class="app-card-link">
+                            <div class="app-card-content">
+                                <h2 class="app-title">{card.title}</h2>
+                                <p class="app-subtitle">{card.subtitle}</p>
+                                <p class="app-description">{card.description}</p>
+                            </div>
+                            <div class="app-card-meta">
+                                <span class="app-id">{entry.id}</span>
+                            </div>
+                        </a>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</PreviewLayout>
+
+<style>
+    .dashboard {
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
+    }
+
+    .preview-header {
+        text-align: center;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: var(--accent);
+        border-radius: 99px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: var(--text-base);
+        letter-spacing: 0.05em;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-weight: 900;
+        margin: 0 0 1rem;
+        background: linear-gradient(to bottom, var(--text-base), var(--text-muted));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .app-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+    .app-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .app-card-link {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        border-radius: 0.75rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .app-card-link:hover {
+        border-color: var(--accent);
+        background: rgba(244, 63, 94, 0.05);
+        transform: translateY(-2px);
+    }
+
+    .app-card-content {
+        flex: 1;
+    }
+
+    .app-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0 0 0.25rem;
+        color: var(--text-base);
+    }
+
+    .app-subtitle {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin: 0 0 0.5rem;
+    }
+
+    .app-description {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .app-card-meta {
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        margin-top: 1.5rem;
+    }
+
+    .app-id {
+        display: inline-block;
+        font-size: 0.7rem;
+        background: var(--bg-page);
+        border: 1px solid var(--border-color);
+        padding: 0.35rem 0.75rem;
+        border-radius: 0.4rem;
+        color: var(--accent);
+        font-weight: 600;
+    }
+</style>

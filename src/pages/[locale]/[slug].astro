@@ -1,0 +1,64 @@
+---
+import PreviewLayout from '../../layouts/PreviewLayout.astro';
+import PreviewNavSidebar from '../../components/PreviewNavSidebar.astro';
+import { ALL_LANDING_DEFINITIONS } from '../../entries';
+import type { KnownLocale, LandingCardContent, LandingDefinition } from '../../types';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+
+export async function getStaticPaths() {
+    const paths = [];
+
+    for (const def of ALL_LANDING_DEFINITIONS) {
+        const localeEntries = Object.entries(def.entry.i18n) as [KnownLocale, () => Promise<LandingCardContent>][];
+
+        const localeCards = await Promise.all(
+            localeEntries.map(async ([locale, loader]) => ({ locale, card: await loader() }))
+        );
+
+        const localeUrls: Partial<Record<KnownLocale, string>> = {};
+        for (const { locale, card } of localeCards) {
+            localeUrls[locale] = `/${locale}/${card.slug}`;
+        }
+
+        const allLandingsNav = await Promise.all(
+            ALL_LANDING_DEFINITIONS.map(async ({ entry }) => ({
+                id: entry.id,
+                i18n: entry.i18n,
+            }))
+        );
+
+        for (const { locale, card } of localeCards) {
+            const nav = await Promise.all(
+                allLandingsNav.map(async ({ id, i18n }) => {
+                    const navLoader = i18n[locale] ?? i18n.en;
+                    const navCard = await navLoader!();
+                    return { id, title: navCard.title, href: `/${locale}/${navCard.slug}`, isActive: id === def.entry.id };
+                })
+            );
+
+            paths.push({
+                params: { locale, slug: card.slug },
+                props: { def, locale, card, localeUrls, nav },
+            });
+        }
+    }
+
+    return paths;
+}
+
+export interface Props {
+    def: LandingDefinition;
+    locale: KnownLocale;
+    card: LandingCardContent;
+    localeUrls: Partial<Record<KnownLocale, string>>;
+    nav: { id: string; title: string; href: string; isActive: boolean }[];
+}
+
+const { def, locale, card, localeUrls, nav } = Astro.props;
+const { default: LandingComponent } = (await def.LandingComponent()) as { default: AstroComponentFactory };
+---
+
+<PreviewLayout title={card.title} currentLocale={locale} localeUrls={localeUrls} hasSidebar={true}>
+    <PreviewNavSidebar slot="sidebar" categoryTitle="Landings" apps={nav} />
+    <LandingComponent locale={locale} />
+</PreviewLayout>
