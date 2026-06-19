@@ -1,0 +1,13 @@
+---
+import type { KnownLocale } from '../../types';
+
+interface Props {
+    locale: KnownLocale;
+}
+
+const { locale } = Astro.props;
+---
+<div class="team-landing">
+    <h1>Team Landing ({locale})</h1>
+    <p>This is the team landing page.</p>
+</div>
