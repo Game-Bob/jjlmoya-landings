@@ -1,0 +1,4 @@
+interface:
+  display_name: "Landing Page Builder"
+  short_description: "Build visual project landings with QA and i18n flow"
+  default_prompt: "Use $landing-page-builder to build a complete English-first landing page section in this project."
