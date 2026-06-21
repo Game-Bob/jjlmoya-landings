@@ -8,6 +8,7 @@ import TranslationComic from './components/TranslationComic.astro';
 import ProductManifesto from './components/ProductManifesto.astro';
 import MemoryWall from './components/MemoryWall.astro';
 import SupportTransition from './components/SupportTransition.astro';
+import { getTranslation } from './i18n';
 import './styles/team-landing.css';
 
 interface Props {
@@ -15,14 +16,15 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+const { pageContent } = getTranslation(locale);
 ---
 <div class="team-landing" data-locale={locale}>
-    <TeamHero />
-    <CompanyWorks />
-    <TeamComicScenes />
-    <BehindJoke />
-    <TranslationComic />
-    <ProductManifesto />
-    <MemoryWall />
-    <SupportTransition locale={locale} />
+    <TeamHero t={pageContent.hero} />
+    <CompanyWorks t={pageContent.companyWorks} />
+    <TeamComicScenes t={pageContent.teamComic} />
+    <BehindJoke t={pageContent.behindJoke} />
+    <TranslationComic t={pageContent.translationComic} />
+    <ProductManifesto t={pageContent.productManifesto} />
+    <MemoryWall t={pageContent.memoryWall} />
+    <SupportTransition locale={locale} t={pageContent.supportTransition} />
 </div>

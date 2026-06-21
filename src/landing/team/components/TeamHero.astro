@@ -1,6 +1,17 @@
 ---
 import heroSceneUrl from "../assets/gamebob-team-hero.webp";
 import "../styles/TeamHero.css";
+
+interface Props {
+    t: {
+        kicker: string;
+        lead: string;
+        stageLabel: string;
+        sceneAlt: string;
+    };
+}
+
+const { t } = Astro.props;
 ---
 
 <section class="team-hero" aria-labelledby="team-hero-title">
@@ -8,23 +19,23 @@ import "../styles/TeamHero.css";
         <div class="team-hero-copy">
             <div class="team-hero-kicker">
                 <span class="team-hero-dot" aria-hidden="true"></span>
-                Somewhere in Mallorca
+                {t.kicker}
             </div>
             <h1 class="team-hero-title" id="team-hero-title">
                 <span>Game</span><span class="team-hero-title-accent">Bob</span>
             </h1>
-            <p class="team-hero-lead">RUN BY CATS. BUILT BY ONE HUMAN.</p>
+            <p class="team-hero-lead">{t.lead}</p>
         </div>
         <div
             class="team-hero-stage"
-            aria-label="Bob supervising the GameBob studio"
+            aria-label={t.stageLabel}
         >
             <img
                 class="team-hero-scene"
                 src={heroSceneUrl.src}
                 width={heroSceneUrl.width}
                 height={heroSceneUrl.height}
-                alt="Pixel-art scene of Bob supervising a board meeting while Juanjo works on a laptop"
+                alt={t.sceneAlt}
                 loading="eager"
             />
         </div>

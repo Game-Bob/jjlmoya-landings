@@ -1,23 +1,37 @@
 ---
 import '../styles/TeamComicScenes.css';
 
+interface Props {
+    t: {
+        eyebrow: string;
+        title: string;
+        scenes: {
+            strategic: { title: string; setting: string; speech: string[] };
+            qa: { title: string; setting: string; speech: string[] };
+            implementation: { title: string; setting: string; speech: string[] };
+        };
+    };
+}
+
+const { t } = Astro.props;
+
 const scenes = [
     {
-        title: 'Strategic planning',
-        setting: 'Bob studies a map of the world and identifies regions with promising snack logistics.',
-        speech: ['More languages.', 'More humans.', 'More food.'],
+        title: t.scenes.strategic.title,
+        setting: t.scenes.strategic.setting,
+        speech: t.scenes.strategic.speech,
         prop: 'map',
     },
     {
-        title: 'Quality assurance',
-        setting: 'A supervisor sleeps on documents labeled extremely important until the layout feels calmer.',
-        speech: ['This button needs warmth.', 'Also, I require the chair.'],
+        title: t.scenes.qa.title,
+        setting: t.scenes.qa.setting,
+        speech: t.scenes.qa.speech,
         prop: 'papers',
     },
     {
-        title: 'Implementation',
-        setting: 'The human writes code while the board contributes unexpected input through the keyboard.',
-        speech: ['Ship it.', 'No, wait. Pet me first.'],
+        title: t.scenes.implementation.title,
+        setting: t.scenes.implementation.setting,
+        speech: t.scenes.implementation.speech,
         prop: 'keyboard',
     },
 ];
@@ -25,8 +39,8 @@ const scenes = [
 
 <section class="team-section team-comic" aria-labelledby="team-comic-title">
     <div class="team-landing-inner">
-        <p class="team-section-eyebrow">Mini webcomic</p>
-        <h2 class="team-section-title" id="team-comic-title">Every team member gets a scene, not just a card.</h2>
+        <p class="team-section-eyebrow">{t.eyebrow}</p>
+        <h2 class="team-section-title" id="team-comic-title">{t.title}</h2>
         <div class="team-comic-strip">
             {
                 scenes.map((scene) => (

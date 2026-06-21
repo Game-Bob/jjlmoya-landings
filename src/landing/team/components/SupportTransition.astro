@@ -4,27 +4,39 @@ import '../styles/SupportTransition.css';
 
 interface Props {
     locale: KnownLocale;
+    t: {
+        eyebrow: string;
+        title: string;
+        text: string;
+        linkText: string;
+        inbox: {
+            ideas: string;
+            bugs: string;
+            fixes: string;
+            support: string;
+        };
+    };
 }
 
-const { locale } = Astro.props;
+const { locale, t } = Astro.props;
 const supportHref = `/${locale}/support`;
 ---
 
 <section class="team-section support-transition" aria-labelledby="support-transition-title">
     <div class="team-landing-inner support-transition-grid">
         <div>
-            <p class="team-section-eyebrow">The board is open to</p>
-            <h2 class="team-section-title" id="support-transition-title">Ideas, bug reports, translation fixes and project support.</h2>
+            <p class="team-section-eyebrow">{t.eyebrow}</p>
+            <h2 class="team-section-title" id="support-transition-title">{t.title}</h2>
             <p class="team-section-text">
-                The executive board cannot promise fast replies. Mostly because they are cats. The human department will still read everything with care.
+                {t.text}
             </p>
-            <a class="support-transition-link" href={supportHref}>Go to Support</a>
+            <a class="support-transition-link" href={supportHref}>{t.linkText}</a>
         </div>
         <div class="support-transition-inbox" aria-hidden="true">
-            <span>ideas</span>
-            <span>bugs</span>
-            <span>fixes</span>
-            <span>support</span>
+            <span>{t.inbox.ideas}</span>
+            <span>{t.inbox.bugs}</span>
+            <span>{t.inbox.fixes}</span>
+            <span>{t.inbox.support}</span>
         </div>
     </div>
 </section>

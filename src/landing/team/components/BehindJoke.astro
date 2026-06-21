@@ -1,19 +1,30 @@
 ---
 import '../styles/BehindJoke.css';
+
+interface Props {
+    t: {
+        eyebrow: string;
+        title: string;
+        text: string;
+        island: string;
+    };
+}
+
+const { t } = Astro.props;
 ---
 
 <section class="team-section behind-joke" aria-labelledby="behind-joke-title">
     <div class="team-landing-inner behind-joke-grid">
         <div class="behind-joke-scene" aria-hidden="true">
-            <span class="behind-joke-island">Mallorca</span>
+            <span class="behind-joke-island">{t.island}</span>
             <span class="behind-joke-desk"></span>
             <span class="behind-joke-avatar">J</span>
         </div>
         <div>
-            <p class="team-section-eyebrow">Behind the joke</p>
-            <h2 class="team-section-title" id="behind-joke-title">The jokes are real. The work is too.</h2>
+            <p class="team-section-eyebrow">{t.eyebrow}</p>
+            <h2 class="team-section-title" id="behind-joke-title">{t.title}</h2>
             <p class="team-section-text">
-                Behind GameBob there is one solo developer designing, building, translating and maintaining everything from Mallorca. The goal is simple: make tools that are useful, visual, fast and pleasant to use.
+                {t.text}
             </p>
         </div>
     </div>

@@ -1,52 +1,70 @@
 ---
 import '../styles/TeamRoster.css';
 
+interface Props {
+    t: {
+        eyebrow: string;
+        title: string;
+        text: string;
+        members: {
+            bob: { role: string; bio: string; tag: string };
+            c2: { name: string; role: string; bio: string; tag: string };
+            c3: { name: string; role: string; bio: string; tag: string };
+            c4: { name: string; role: string; bio: string; tag: string };
+            c5: { name: string; role: string; bio: string; tag: string };
+            jj: { name: string; role: string; bio: string; tag: string };
+        };
+    };
+}
+
+const { t } = Astro.props;
+
 const members = [
     {
         name: 'Bob',
-        role: 'Executive Nap Officer',
-        bio: 'Black cat, founder of the quiet QA department, and the first member of the GameBob team.',
-        tag: 'Final approval: sleeps on it',
+        role: t.members.bob.role,
+        bio: t.members.bob.bio,
+        tag: t.members.bob.tag,
         mark: 'B',
         color: '#f8d66d',
     },
     {
-        name: 'Cat teammate 02',
-        role: 'Chaos QA',
-        bio: 'Specializes in unexpected clicks, keyboard walks, and finding the one layout that still needs love.',
-        tag: 'Name pending',
+        name: t.members.c2.name,
+        role: t.members.c2.role,
+        bio: t.members.c2.bio,
+        tag: t.members.c2.tag,
         mark: 'C',
         color: '#2dd4bf',
     },
     {
-        name: 'Cat teammate 03',
-        role: 'Comfort Designer',
-        bio: 'Keeps the studio soft, warm, and legally required to contain at least one cozy corner.',
-        tag: 'Name pending',
+        name: t.members.c3.name,
+        role: t.members.c3.role,
+        bio: t.members.c3.bio,
+        tag: t.members.c3.tag,
         mark: 'C',
         color: '#f15aa0',
     },
     {
-        name: 'Cat teammate 04',
-        role: 'Focus Interruptor',
-        bio: 'Protects the project from overwork by introducing regular breaks at inconvenient times.',
-        tag: 'Name pending',
+        name: t.members.c4.name,
+        role: t.members.c4.role,
+        bio: t.members.c4.bio,
+        tag: t.members.c4.tag,
         mark: 'C',
         color: '#60a5fa',
     },
     {
-        name: 'Cat teammate 05',
-        role: 'Snack Auditor',
-        bio: 'Monitors all kitchen-related decisions and maintains strong opinions about empty bowls.',
-        tag: 'Name pending',
+        name: t.members.c5.name,
+        role: t.members.c5.role,
+        bio: t.members.c5.bio,
+        tag: t.members.c5.tag,
         mark: 'C',
         color: '#a78bfa',
     },
     {
-        name: 'JJL Moya',
-        role: 'Solo Developer',
-        bio: 'Builds the games, tools, copy, interfaces, systems, and the occasional feature requested by a tail.',
-        tag: 'Human department',
+        name: t.members.jj.name,
+        role: t.members.jj.role,
+        bio: t.members.jj.bio,
+        tag: t.members.jj.tag,
         mark: 'J',
         color: '#fb7185',
     },
@@ -55,10 +73,10 @@ const members = [
 
 <section class="team-section team-roster" aria-labelledby="team-roster-title">
     <div class="team-landing-inner">
-        <p class="team-section-eyebrow">Current team</p>
-        <h2 class="team-section-title" id="team-roster-title">A serious studio, supervised by unserious experts.</h2>
+        <p class="team-section-eyebrow">{t.eyebrow}</p>
+        <h2 class="team-section-title" id="team-roster-title">{t.title}</h2>
         <p class="team-section-text">
-            This is the first rough pass: Bob leads the page today, and the rest of the team has placeholder cards ready to receive names, photos, stories, and properly ridiculous titles.
+            {t.text}
         </p>
         <div class="team-roster-grid">
             {

@@ -1,13 +1,15 @@
 ---
 import type { KnownLocale } from '../../types';
+import { getTranslation } from './i18n';
 
 interface Props {
     locale: KnownLocale;
 }
 
 const { locale } = Astro.props;
+const { pageContent } = getTranslation(locale);
 ---
 <div class="support-landing">
-    <h1>Support Landing ({locale})</h1>
-    <p>This is the support landing page.</p>
+    <h1>{pageContent.title} ({locale})</h1>
+    <p>{pageContent.description}</p>
 </div>
