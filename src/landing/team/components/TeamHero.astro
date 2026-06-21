@@ -1,0 +1,32 @@
+---
+import heroSceneUrl from "../assets/gamebob-team-hero.webp";
+import "../styles/TeamHero.css";
+---
+
+<section class="team-hero" aria-labelledby="team-hero-title">
+    <div class="team-landing-inner team-hero-grid">
+        <div class="team-hero-copy">
+            <div class="team-hero-kicker">
+                <span class="team-hero-dot" aria-hidden="true"></span>
+                Somewhere in Mallorca
+            </div>
+            <h1 class="team-hero-title" id="team-hero-title">
+                <span>Game</span><span class="team-hero-title-accent">Bob</span>
+            </h1>
+            <p class="team-hero-lead">RUN BY CATS. BUILT BY ONE HUMAN.</p>
+        </div>
+        <div
+            class="team-hero-stage"
+            aria-label="Bob supervising the GameBob studio"
+        >
+            <img
+                class="team-hero-scene"
+                src={heroSceneUrl.src}
+                width={heroSceneUrl.width}
+                height={heroSceneUrl.height}
+                alt="Pixel-art scene of Bob supervising a board meeting while Juanjo works on a laptop"
+                loading="eager"
+            />
+        </div>
+    </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import '../styles/ProductManifesto.css';
+
+const values = [
+    'Useful',
+    'Visual',
+    'Fast',
+    'Playful',
+    'Sometimes weird',
+    'Made with care',
+];
+---
+
+<section class="team-section product-manifesto" aria-labelledby="product-manifesto-title">
+    <div class="team-landing-inner">
+        <p class="team-section-eyebrow">Product philosophy</p>
+        <h2 class="team-section-title" id="product-manifesto-title">A tiny manifesto with pawprints in the margins.</h2>
+        <div class="product-manifesto-grid">
+            {values.map((value) => <div class="product-manifesto-tile">{value}</div>)}
+        </div>
+    </div>
+</section>

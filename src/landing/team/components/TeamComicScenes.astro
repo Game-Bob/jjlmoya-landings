@@ -1,0 +1,51 @@
+---
+import '../styles/TeamComicScenes.css';
+
+const scenes = [
+    {
+        title: 'Strategic planning',
+        setting: 'Bob studies a map of the world and identifies regions with promising snack logistics.',
+        speech: ['More languages.', 'More humans.', 'More food.'],
+        prop: 'map',
+    },
+    {
+        title: 'Quality assurance',
+        setting: 'A supervisor sleeps on documents labeled extremely important until the layout feels calmer.',
+        speech: ['This button needs warmth.', 'Also, I require the chair.'],
+        prop: 'papers',
+    },
+    {
+        title: 'Implementation',
+        setting: 'The human writes code while the board contributes unexpected input through the keyboard.',
+        speech: ['Ship it.', 'No, wait. Pet me first.'],
+        prop: 'keyboard',
+    },
+];
+---
+
+<section class="team-section team-comic" aria-labelledby="team-comic-title">
+    <div class="team-landing-inner">
+        <p class="team-section-eyebrow">Mini webcomic</p>
+        <h2 class="team-section-title" id="team-comic-title">Every team member gets a scene, not just a card.</h2>
+        <div class="team-comic-strip">
+            {
+                scenes.map((scene) => (
+                    <article class={`team-comic-panel team-comic-panel-${scene.prop}`}>
+                        <div class="team-comic-art" aria-hidden="true">
+                            <span class="team-comic-cat"></span>
+                            <span class="team-comic-human"></span>
+                            <span class="team-comic-prop">{scene.prop}</span>
+                        </div>
+                        <div class="team-comic-content">
+                            <h3>{scene.title}</h3>
+                            <p>{scene.setting}</p>
+                            <div class="team-comic-bubbles">
+                                {scene.speech.map((line) => <span>{line}</span>)}
+                            </div>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

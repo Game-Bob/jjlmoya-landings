@@ -1,0 +1,77 @@
+---
+import '../styles/TeamRoster.css';
+
+const members = [
+    {
+        name: 'Bob',
+        role: 'Executive Nap Officer',
+        bio: 'Black cat, founder of the quiet QA department, and the first member of the GameBob team.',
+        tag: 'Final approval: sleeps on it',
+        mark: 'B',
+        color: '#f8d66d',
+    },
+    {
+        name: 'Cat teammate 02',
+        role: 'Chaos QA',
+        bio: 'Specializes in unexpected clicks, keyboard walks, and finding the one layout that still needs love.',
+        tag: 'Name pending',
+        mark: 'C',
+        color: '#2dd4bf',
+    },
+    {
+        name: 'Cat teammate 03',
+        role: 'Comfort Designer',
+        bio: 'Keeps the studio soft, warm, and legally required to contain at least one cozy corner.',
+        tag: 'Name pending',
+        mark: 'C',
+        color: '#f15aa0',
+    },
+    {
+        name: 'Cat teammate 04',
+        role: 'Focus Interruptor',
+        bio: 'Protects the project from overwork by introducing regular breaks at inconvenient times.',
+        tag: 'Name pending',
+        mark: 'C',
+        color: '#60a5fa',
+    },
+    {
+        name: 'Cat teammate 05',
+        role: 'Snack Auditor',
+        bio: 'Monitors all kitchen-related decisions and maintains strong opinions about empty bowls.',
+        tag: 'Name pending',
+        mark: 'C',
+        color: '#a78bfa',
+    },
+    {
+        name: 'JJL Moya',
+        role: 'Solo Developer',
+        bio: 'Builds the games, tools, copy, interfaces, systems, and the occasional feature requested by a tail.',
+        tag: 'Human department',
+        mark: 'J',
+        color: '#fb7185',
+    },
+];
+---
+
+<section class="team-section team-roster" aria-labelledby="team-roster-title">
+    <div class="team-landing-inner">
+        <p class="team-section-eyebrow">Current team</p>
+        <h2 class="team-section-title" id="team-roster-title">A serious studio, supervised by unserious experts.</h2>
+        <p class="team-section-text">
+            This is the first rough pass: Bob leads the page today, and the rest of the team has placeholder cards ready to receive names, photos, stories, and properly ridiculous titles.
+        </p>
+        <div class="team-roster-grid">
+            {
+                members.map((member) => (
+                    <article class="team-member-card" style={`--member-color: ${member.color}`}>
+                        <div class="team-member-card-avatar" aria-hidden="true">{member.mark}</div>
+                        <h3 class="team-member-card-name">{member.name}</h3>
+                        <p class="team-member-card-role">{member.role}</p>
+                        <p class="team-member-card-bio">{member.bio}</p>
+                        <span class="team-member-card-tag">{member.tag}</span>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

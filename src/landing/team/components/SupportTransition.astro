@@ -1,0 +1,30 @@
+---
+import type { KnownLocale } from '../../../types';
+import '../styles/SupportTransition.css';
+
+interface Props {
+    locale: KnownLocale;
+}
+
+const { locale } = Astro.props;
+const supportHref = `/${locale}/support`;
+---
+
+<section class="team-section support-transition" aria-labelledby="support-transition-title">
+    <div class="team-landing-inner support-transition-grid">
+        <div>
+            <p class="team-section-eyebrow">The board is open to</p>
+            <h2 class="team-section-title" id="support-transition-title">Ideas, bug reports, translation fixes and project support.</h2>
+            <p class="team-section-text">
+                The executive board cannot promise fast replies. Mostly because they are cats. The human department will still read everything with care.
+            </p>
+            <a class="support-transition-link" href={supportHref}>Go to Support</a>
+        </div>
+        <div class="support-transition-inbox" aria-hidden="true">
+            <span>ideas</span>
+            <span>bugs</span>
+            <span>fixes</span>
+            <span>support</span>
+        </div>
+    </div>
+</section>

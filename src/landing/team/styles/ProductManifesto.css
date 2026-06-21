@@ -1,0 +1,26 @@
+.product-manifesto-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.product-manifesto-tile {
+    display: grid;
+    min-height: 180px;
+    place-items: center;
+    border: 1px solid var(--team-border);
+    border-radius: 20px;
+    padding: 1rem;
+    color: var(--team-ink);
+    font-size: clamp(1.6rem, 4vw, 3.2rem);
+    font-weight: var(--font-weight-bold, 800);
+    line-height: 0.95;
+    text-align: center;
+}
+
+@media (max-width: 780px) {
+    .product-manifesto-grid {
+        grid-template-columns: 1fr;
+    }
+}

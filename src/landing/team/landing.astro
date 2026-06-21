@@ -1,5 +1,14 @@
 ---
 import type { KnownLocale } from '../../types';
+import TeamHero from './components/TeamHero.astro';
+import CompanyWorks from './components/CompanyWorks.astro';
+import TeamComicScenes from './components/TeamComicScenes.astro';
+import BehindJoke from './components/BehindJoke.astro';
+import TranslationComic from './components/TranslationComic.astro';
+import ProductManifesto from './components/ProductManifesto.astro';
+import MemoryWall from './components/MemoryWall.astro';
+import SupportTransition from './components/SupportTransition.astro';
+import './styles/team-landing.css';
 
 interface Props {
     locale: KnownLocale;
@@ -7,7 +16,13 @@ interface Props {
 
 const { locale } = Astro.props;
 ---
-<div class="team-landing">
-    <h1>Team Landing ({locale})</h1>
-    <p>This is the team landing page.</p>
+<div class="team-landing" data-locale={locale}>
+    <TeamHero />
+    <CompanyWorks />
+    <TeamComicScenes />
+    <BehindJoke />
+    <TranslationComic />
+    <ProductManifesto />
+    <MemoryWall />
+    <SupportTransition locale={locale} />
 </div>

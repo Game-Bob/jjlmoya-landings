@@ -1,0 +1,31 @@
+---
+import '../styles/MemoryWall.css';
+
+const memories = [
+    { name: 'Memory slot 01', line: 'A small place for a big personality.', mark: '01', color: '#f8d66d' },
+    { name: 'Memory slot 02', line: 'Favorite nap, favorite sound, favorite tiny habit.', mark: '02', color: '#2dd4bf' },
+    { name: 'Memory slot 03', line: 'A story that deserves its own warm corner.', mark: '03', color: '#f15aa0' },
+    { name: 'Memory slot 04', line: 'For every animal who made the house a team.', mark: '04', color: '#60a5fa' },
+];
+---
+
+<section class="team-section memory-wall" aria-labelledby="memory-wall-title">
+    <div class="team-landing-inner">
+        <p class="team-section-eyebrow">Memory wall</p>
+        <h2 class="team-section-title" id="memory-wall-title">For every animal still part of the story.</h2>
+        <p class="team-section-text">
+            This will become a warm archive of photos, dates, little rituals and memories. Gentle rather than sad: a place for everyone who left pawprints, noise, warmth and timing chaos behind.
+        </p>
+        <div class="memory-wall-board">
+            {
+                memories.map((memory) => (
+                    <article class="memory-card" style={`--memory-color: ${memory.color}`}>
+                        <div class="memory-card-photo" aria-hidden="true">{memory.mark}</div>
+                        <h3 class="memory-card-name">{memory.name}</h3>
+                        <p class="memory-card-line">{memory.line}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

@@ -9,12 +9,14 @@
         "./entries": "./src/entries.ts"
     },
     "files": [
-        "src"
+        "src",
+        "scripts"
     ],
     "publishConfig": {
         "access": "public"
     },
     "scripts": {
+        "postinstall": "node ./scripts/copy-public-assets.mjs",
         "dev": "astro dev",
         "start": "astro dev",
         "build": "astro build",

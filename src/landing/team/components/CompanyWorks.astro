@@ -1,0 +1,156 @@
+---
+import '../styles/CompanyWorks.css';
+import bobSprite from '../assets/bob.webp';
+import terraSprite from '../assets/terra.webp';
+import ambarSprite from '../assets/ambar.webp';
+import ambarChiquillaSprite from '../assets/ambar-chiquilla.webp';
+import dracSprite from '../assets/drac.webp';
+import jjSprite from '../assets/jj.webp';
+
+const members = [
+    {
+        id: 'bob',
+        name: 'Bob',
+        role: 'Chief Executive Cat',
+        status: 'Authority level: Absolute. Professional eater.',
+        dossier: 'Maximum authority. Reviews strategy, snack allocation and whether the current direction deserves a blink.',
+        hierarchy: 'chief',
+        mark: 'B',
+        sprite: bobSprite,
+    },
+    {
+        id: 'terra',
+        name: 'Terra',
+        role: 'The Matriarch',
+        status: 'The origin. Stares at code until it feels judged.',
+        dossier: 'Senior presence. Keeps the board emotionally calibrated and silently audits suspicious decisions.',
+        hierarchy: 'matriarch',
+        mark: 'T',
+        sprite: terraSprite,
+    },
+    {
+        id: 'ambar',
+        name: 'Ámbar',
+        role: 'Senior Supervisor',
+        status: 'Maintaining balance of power (via extreme clinginess).',
+        dossier: 'Oversees attention distribution, lap availability and the human department morale budget.',
+        hierarchy: 'standard',
+        mark: 'A',
+        sprite: ambarSprite,
+    },
+    {
+        id: 'ambar-chiquilla',
+        name: 'Ámbar Chiquilla',
+        role: 'Junior Auditor',
+        status: 'Timid hunter. Specialized in mouse cursor tracking.',
+        dossier: 'Small-format auditor. Specializes in careful observation, cursor pursuit and gentle escalation.',
+        hierarchy: 'standard',
+        mark: 'AC',
+        sprite: ambarChiquillaSprite,
+    },
+    {
+        id: 'drac',
+        name: 'Drac',
+        role: 'Field Operations',
+        status: 'Party animal. Living his best life on the streets.',
+        dossier: 'External operations lead. Maintains field independence and appears when the conditions are personally acceptable.',
+        hierarchy: 'standard',
+        mark: 'D',
+        sprite: dracSprite,
+    },
+    {
+        id: 'jj',
+        name: 'JJ',
+        role: 'Solo Developer',
+        status: 'Implementation Dept. Status: Outnumbered.',
+        dossier: 'Implementation department. Builds, ships, translates and maintains the platform under board supervision.',
+        hierarchy: 'standard',
+        mark: 'JJ',
+        sprite: jjSprite,
+    },
+];
+---
+
+<section class="team-section company-works" aria-labelledby="company-works-title">
+    <div class="team-landing-inner">
+        <p class="team-section-eyebrow">How this company works</p>
+        <h2 class="team-section-title" id="company-works-title">The Feline Board</h2>
+        <p class="team-section-text">
+            GameBob is organized by actual authority, not by corporate fantasy. Bob and Terra dominate the board. JJ implements the decisions.
+        </p>
+
+        <div class="company-works-system" data-company-grid>
+            {
+                members.map((member) => (
+                    <button
+                        class={`company-works-node company-works-node-${member.hierarchy}`}
+                        type="button"
+                        data-dossier-name={member.name}
+                        data-dossier-role={member.role}
+                        data-dossier-status={member.status}
+                        data-dossier-copy={member.dossier}
+                    >
+                        <span class="company-works-sprite" data-member={member.id} aria-hidden="true">
+                            <img
+                                src={member.sprite.src}
+                                width={member.sprite.width}
+                                height={member.sprite.height}
+                                alt=""
+                                loading="lazy"
+                            />
+                        </span>
+                        <span class="company-works-node-content">
+                            <span class="company-works-name">{member.name}</span>
+                            <span class="company-works-role">{member.role}</span>
+                            <span class="company-works-status">{member.status}</span>
+                        </span>
+                    </button>
+                ))
+            }
+        </div>
+    </div>
+
+    <div class="company-works-focus" data-company-focus></div>
+    <aside class="company-works-drawer" data-company-drawer aria-hidden="true">
+        <button class="company-works-drawer-close" type="button" data-company-close aria-label="Close dossier">×</button>
+        <p class="company-works-drawer-eyebrow">Secret technical dossier</p>
+        <h3 data-company-drawer-name></h3>
+        <p class="company-works-drawer-role" data-company-drawer-role></p>
+        <p class="company-works-drawer-status" data-company-drawer-status></p>
+        <p class="company-works-drawer-copy" data-company-drawer-copy></p>
+    </aside>
+</section>
+
+<script>
+    const drawer = document.querySelector<HTMLElement>('[data-company-drawer]');
+    const closeButton = document.querySelector<HTMLButtonElement>('[data-company-close]');
+    const focusLayer = document.querySelector<HTMLElement>('[data-company-focus]');
+
+    document.querySelectorAll<HTMLButtonElement>('[data-dossier-name]').forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+            focusLayer?.classList.add('is-active');
+            card.classList.add('is-focused');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            focusLayer?.classList.remove('is-active');
+            card.classList.remove('is-focused');
+        });
+
+        card.addEventListener('click', () => {
+            if (!drawer) return;
+
+            drawer.querySelector('[data-company-drawer-name]')!.textContent = card.dataset.dossierName ?? '';
+            drawer.querySelector('[data-company-drawer-role]')!.textContent = card.dataset.dossierRole ?? '';
+            drawer.querySelector('[data-company-drawer-status]')!.textContent = card.dataset.dossierStatus ?? '';
+            drawer.querySelector('[data-company-drawer-copy]')!.textContent = card.dataset.dossierCopy ?? '';
+            drawer.classList.add('is-open');
+            drawer.setAttribute('aria-hidden', 'false');
+        });
+    });
+
+    closeButton?.addEventListener('click', () => {
+        drawer?.classList.remove('is-open');
+        drawer?.setAttribute('aria-hidden', 'true');
+    });
+</script>
