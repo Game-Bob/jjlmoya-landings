@@ -118,7 +118,7 @@ export const pageContent = {
     supportTransition: {
         eyebrow: 'La junta está abierta a',
         title: 'Feedback.',
-        text: 'Ideas, informes de errores, correcciones de traducción y soporte del proyecto. La junta ejecutiva no puede prometer respuestas rápidas. Principalmente porque son gatos. El departamento humano seguirá leyendo todo con cuidado.',
+        text: 'Ideas, informes de errores, correcciones de traducción y soporte del proyecto. La junta ejecutiva no puede prometer respuestas rápidas. Principalmente porque son gatos. El recurso humano seguirá leyendo todo con cuidado.',
         linkText: 'Ir a Apóyanos',
         inbox: {
             ideas: 'ideas',

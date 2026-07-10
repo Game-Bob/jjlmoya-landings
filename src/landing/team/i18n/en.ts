@@ -118,7 +118,7 @@ export const pageContent = {
     supportTransition: {
         eyebrow: 'The board is open to',
         title: 'Feedback.',
-        text: 'Ideas, bug reports, translation fixes and project support. The executive board cannot promise fast replies. Mostly because they are cats. The human department will still read everything with care.',
+        text: 'Ideas, bug reports, translation fixes and project support. The executive board cannot promise fast replies. Mostly because they are cats. The human resource will still read everything with care.',
         linkText: 'Support Us!',
         inbox: {
             ideas: 'ideas',

@@ -2,6 +2,8 @@
 import type { KnownLocale } from '../../../types';
 import '../styles/SupportTransition.css';
 import feedbackImage from '../assets/feedback.webp';
+import formulaMoney from '../assets/master-plan-money.webp';
+import formulaFood from '../assets/master-plan-more-food.webp';
 
 interface Props {
     locale: KnownLocale;
@@ -39,6 +41,12 @@ const supportHref = `/${locale}/support`;
                 <span>Z</span>
                 <span>z</span>
                 <span>z</span>
+                <span class="support-transition-bubble-icon">
+                    <img src={formulaFood.src} width={formulaFood.width} height={formulaFood.height} alt="" />
+                </span>
+                <span class="support-transition-bubble-icon">
+                    <img src={formulaMoney.src} width={formulaMoney.width} height={formulaMoney.height} alt="" />
+                </span>
             </div>
             <div class="support-transition-frame">
                 <img
