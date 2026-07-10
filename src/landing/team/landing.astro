@@ -2,11 +2,11 @@
 import type { KnownLocale } from '../../types';
 import TeamHero from './components/TeamHero.astro';
 import CompanyWorks from './components/CompanyWorks.astro';
-import TeamComicScenes from './components/TeamComicScenes.astro';
 import BehindJoke from './components/BehindJoke.astro';
-import TranslationComic from './components/TranslationComic.astro';
+import BobMasterPlan from './components/BobMasterPlan.astro';
 import ProductManifesto from './components/ProductManifesto.astro';
 import MemoryWall from './components/MemoryWall.astro';
+import BobModelBook from './components/BobModelBook.astro';
 import SupportTransition from './components/SupportTransition.astro';
 import { getTranslation } from './i18n';
 import './styles/team-landing.css';
@@ -21,10 +21,10 @@ const { pageContent } = getTranslation(locale);
 <div class="team-landing" data-locale={locale}>
     <TeamHero t={pageContent.hero} />
     <CompanyWorks t={pageContent.companyWorks} />
-    <TeamComicScenes t={pageContent.teamComic} />
     <BehindJoke t={pageContent.behindJoke} />
-    <TranslationComic t={pageContent.translationComic} />
+    <BobMasterPlan t={pageContent.translationComic} />
     <ProductManifesto t={pageContent.productManifesto} />
     <MemoryWall t={pageContent.memoryWall} />
+    <BobModelBook />
     <SupportTransition locale={locale} t={pageContent.supportTransition} />
 </div>

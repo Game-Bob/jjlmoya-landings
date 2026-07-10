@@ -1,0 +1,65 @@
+---
+import '../styles/BobModelBook.css';
+import coverPose from '../assets/bob-model-book/bob-pose-cover.webp';
+import attitudePose from '../assets/bob-model-book/bob-pose-attitude.webp';
+import expensivePose from '../assets/bob-model-book/bob-pose-expensive.webp';
+import finalPose from '../assets/bob-model-book/bob-pose-final.webp';
+import pose05 from '../assets/bob-model-book/bob-pose-05.webp';
+import pose06 from '../assets/bob-model-book/bob-pose-06.webp';
+import pose07Locked from '../assets/bob-model-book/bob-pose-07-locked.webp';
+import pose08Locked from '../assets/bob-model-book/bob-pose-08-locked.webp';
+import pose09Locked from '../assets/bob-model-book/bob-pose-09-locked.webp';
+
+const poses = [
+    { image: coverPose, variant: 'large' },
+    { image: attitudePose, variant: 'portrait' },
+    { image: expensivePose, variant: 'wide' },
+    { image: finalPose, variant: 'portrait' },
+    { image: pose05, variant: 'portrait' },
+    { image: pose06, variant: 'wide' },
+    { image: pose07Locked, variant: 'portrait', locked: true },
+    { image: pose08Locked, variant: 'portrait', locked: true },
+    { image: pose09Locked, variant: 'wide', locked: true },
+];
+---
+
+<section class="team-section bob-model-book" aria-labelledby="bob-model-book-title">
+    <div class="team-landing-inner">
+        <div class="bob-model-book-header">
+            <p class="team-section-eyebrow">Plan de emergencia</p>
+            <h2 class="bob-model-book-logo" id="bob-model-book-title">
+                <span class="bob-model-book-logo-mark" aria-hidden="true"></span>
+                <span>Only</span><strong>Bob</strong>
+            </h2>
+            <p class="team-section-text">
+                Bob me obligó a crear esta sección porque, si todo lo demás falla, considera que su presencia puede ser
+                una alternativa económicamente viable. Yo solo he implementado la orden.
+            </p>
+        </div>
+
+        <div class="bob-model-book-grid" aria-label="Galería editorial de Bob">
+            {
+                poses.map((pose, index) => (
+                    <figure
+                        class:list={[
+                            'bob-model-book-frame',
+                            `bob-model-book-frame-${pose.variant}`,
+                            pose.locked && 'is-locked',
+                        ]}
+                    >
+                        <div class="bob-model-book-stage">
+                            <img
+                                src={pose.image.src}
+                                width={pose.image.width}
+                                height={pose.image.height}
+                                alt={pose.locked ? 'Gesto bloqueado de Bob' : 'Bob en gesto editorial'}
+                                loading={index < 2 ? 'eager' : 'lazy'}
+                            />
+                            {pose.locked && <span class="bob-model-book-lock" aria-hidden="true"></span>}
+                        </div>
+                    </figure>
+                ))
+            }
+        </div>
+    </div>
+</section>

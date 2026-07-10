@@ -1,0 +1,152 @@
+---
+import '../styles/BobMasterPlan.css';
+import bobSprite from '../assets/bob.webp';
+import jjSprite from '../assets/jj.webp';
+import translationDiscovery from '../assets/translation-discovery.png';
+import formulaMoney from '../assets/master-plan-money.webp';
+import formulaFood from '../assets/master-plan-food.webp';
+import formulaMoreMoney from '../assets/master-plan-more-money.webp';
+import formulaMoreFood from '../assets/master-plan-more-food.webp';
+import formulaTools from '../assets/master-plan-tools.webp';
+import formulaProjects from '../assets/master-plan-projects.webp';
+
+interface Props {
+    t: {
+        eyebrow: string;
+        title: string;
+        spainFood: string;
+        worldFood: string;
+        humanAssignment: string;
+        languagesLabel: string;
+        text: string;
+        quote: string;
+    };
+}
+
+const { t } = Astro.props;
+
+const scenes = [
+    {
+        number: '01',
+        label: 'Mi gran error',
+        title: 'Bob descubrió el sistema.',
+        text: 'Un día cometí un error irreparable: le dejé ver cómo conseguía su comida. Ese día Bob lo empezó a entender todo.',
+        visual: 'money',
+        asset: translationDiscovery,
+        assetAlt: '',
+        formula: [
+            { label: 'Dinero', asset: formulaMoney },
+            { label: 'Comida', asset: formulaFood },
+        ],
+    },
+    {
+        number: '02',
+        label: 'La revelación',
+        title: 'La lógica era impecable.',
+        text: 'Si el dinero compra comida, más dinero compra más comida. Peligrosamente simple. Peligrosamente Bob.',
+        visual: 'bowl',
+        asset: bobSprite,
+        assetAlt: '',
+        formula: [
+            { label: 'Más dinero', asset: formulaMoreMoney },
+            { label: 'Más comida', asset: formulaMoreFood },
+        ],
+    },
+    {
+        number: '03',
+        label: 'El plan maestro',
+        title: 'Bob pensó en ingresos.',
+        text: 'Bob no se conformó con entender el sistema. Empezó a preguntarse cómo producir dinero de forma recurrente, preferiblemente sin mover una pata.',
+        visual: 'map',
+        asset: bobSprite,
+        assetAlt: '',
+        formula: [
+            { label: 'Herramientas', asset: formulaTools },
+            { label: 'Dinero', asset: formulaMoney },
+        ],
+    },
+    {
+        number: '04',
+        label: 'Nace GameBob',
+        title: 'El humano recibió la orden.',
+        text: 'La orden fue sencilla: el humano construiría herramientas, juegos y páginas. Bob supervisaría la estrategia. La comida financiaría la visión.',
+        visual: 'orders',
+        asset: jjSprite,
+        assetAlt: '',
+        formula: [
+            { label: 'Más proyectos', asset: formulaProjects },
+            { label: 'Más comida', asset: formulaMoreFood },
+        ],
+    },
+];
+---
+
+<section class="team-section translation-comic" aria-labelledby="translation-comic-title">
+    <div class="team-landing-inner">
+        <div class="translation-comic-header">
+            <p class="team-section-eyebrow">{t.eyebrow}</p>
+            <h2 class="team-section-title" id="translation-comic-title">Cómo empezó todo</h2>
+            <p class="team-section-text">
+                El Plan Maestro de Bob para apoderarse de tu dinero empezó con una revelación sencilla: el dinero podía
+                convertirse en comida. Desde entonces, nada volvió a ser operacionalmente seguro.
+            </p>
+        </div>
+
+        <div class="translation-comic-strip" aria-label={t.languagesLabel}>
+            {
+                scenes.map((scene) => (
+                    <article class={`translation-comic-scene translation-comic-scene-${scene.visual}`}>
+                        <div class="translation-comic-art" aria-hidden="true">
+                            <span class="translation-comic-frame-label">{scene.number}</span>
+                            <span class="translation-comic-placeholder">
+                                <img
+                                    class="translation-comic-asset"
+                                    src={scene.asset.src}
+                                    width={scene.asset.width}
+                                    height={scene.asset.height}
+                                    alt={scene.assetAlt}
+                                    loading="lazy"
+                                />
+                            </span>
+                        </div>
+                        <div class="translation-comic-copy">
+                            <p class="translation-comic-kicker">{scene.label}</p>
+                            <h3>{scene.title}</h3>
+                            {
+                                scene.formula && (
+                                    <div class="translation-comic-equation">
+                                        <span class="translation-comic-equation-term">
+                                            <img
+                                                src={scene.formula[0].asset.src}
+                                                width={scene.formula[0].asset.width}
+                                                height={scene.formula[0].asset.height}
+                                                alt={scene.formula[0].label}
+                                                loading="lazy"
+                                            />
+                                        </span>
+                                        <span class="translation-comic-equation-arrow" aria-hidden="true">&gt;</span>
+                                        <span class="translation-comic-equation-term">
+                                            <img
+                                                src={scene.formula[1].asset.src}
+                                                width={scene.formula[1].asset.width}
+                                                height={scene.formula[1].asset.height}
+                                                alt={scene.formula[1].label}
+                                                loading="lazy"
+                                            />
+                                        </span>
+                                    </div>
+                                )
+                            }
+                            <p>{scene.text}</p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+
+        <p class="translation-comic-punchline">
+            <span>{t.quote}</span>
+            <strong>El plan era simple. El humano sigue recuperándose.</strong>
+        </p>
+    </div>
+</section>
