@@ -2,8 +2,8 @@
 import type { KnownLocale } from '../../types';
 import TeamHero from './components/TeamHero.astro';
 import CompanyWorks from './components/CompanyWorks.astro';
-import BehindJoke from './components/BehindJoke.astro';
 import BobMasterPlan from './components/BobMasterPlan.astro';
+import HumanTouch from './components/HumanTouch.astro';
 import ProductManifesto from './components/ProductManifesto.astro';
 import MemoryWall from './components/MemoryWall.astro';
 import BobModelBook from './components/BobModelBook.astro';
@@ -21,8 +21,8 @@ const { pageContent } = getTranslation(locale);
 <div class="team-landing" data-locale={locale}>
     <TeamHero t={pageContent.hero} />
     <CompanyWorks t={pageContent.companyWorks} />
-    <BehindJoke t={pageContent.behindJoke} />
     <BobMasterPlan t={pageContent.translationComic} />
+    <HumanTouch />
     <ProductManifesto t={pageContent.productManifesto} />
     <MemoryWall t={pageContent.memoryWall} />
     <BobModelBook />

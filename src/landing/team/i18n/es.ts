@@ -81,7 +81,7 @@ export const pageContent = {
         island: 'Mallorca'
     },
     translationComic: {
-        eyebrow: 'El cómic de traducción',
+        eyebrow: 'El origen',
         title: 'Bob vio el mapa del mundo y tomó una decisión empresarial.',
         spainFood: 'España significa comida.',
         worldFood: 'El mundo significa más comida.',

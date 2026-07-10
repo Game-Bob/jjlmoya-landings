@@ -1,25 +1,25 @@
-.translation-comic {
+.master-plan {
     position: relative;
     margin-block: clamp(3rem, 7vw, 6rem);
     padding-block: clamp(2rem, 5vw, 4rem);
 }
 
-.translation-comic .team-landing-inner {
+.master-plan .team-landing-inner {
     position: relative;
     z-index: 1;
 }
 
-.translation-comic-header {
+.master-plan-header {
     max-width: 780px;
 }
 
-.translation-comic-strip {
+.master-plan-strip {
     display: grid;
     gap: clamp(1rem, 2vw, 1.5rem);
     margin-top: clamp(2rem, 5vw, 3.5rem);
 }
 
-.translation-comic-scene {
+.master-plan-scene {
     display: grid;
     grid-template-columns: minmax(240px, 0.82fr) minmax(0, 1fr);
     gap: clamp(1rem, 4vw, 3rem);
@@ -31,15 +31,15 @@
     box-shadow: 0 22px 70px rgba(0, 0, 0, 0.12);
 }
 
-.translation-comic-scene:nth-child(even) {
+.master-plan-scene:nth-child(even) {
     grid-template-columns: minmax(0, 1fr) minmax(240px, 0.82fr);
 }
 
-.translation-comic-scene:nth-child(even) .translation-comic-art {
+.master-plan-scene:nth-child(even) .master-plan-art {
     order: 2;
 }
 
-.translation-comic-art {
+.master-plan-art {
     position: relative;
     aspect-ratio: 16 / 9;
     min-height: auto;
@@ -51,7 +51,7 @@
         color-mix(in srgb, var(--team-deep) 92%, #112633);
 }
 
-.translation-comic-frame-label {
+.master-plan-frame-label {
     position: absolute;
     top: 0.75rem;
     left: 0.75rem;
@@ -67,7 +67,7 @@
     font-weight: var(--font-weight-bold, 800);
 }
 
-.translation-comic-placeholder {
+.master-plan-placeholder {
     position: absolute;
     inset: 0;
     display: grid;
@@ -75,7 +75,7 @@
     border-radius: 6px;
 }
 
-.translation-comic-asset {
+.master-plan-asset {
     display: block;
     width: 100%;
     height: 100%;
@@ -83,37 +83,39 @@
     filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.34));
 }
 
-.translation-comic-scene-money .translation-comic-asset {
+.master-plan-scene-money .master-plan-asset {
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: none;
 }
 
-.translation-comic-scene-bowl .translation-comic-asset {
-    width: min(48%, 180px);
-    height: auto;
-    object-fit: contain;
+.master-plan-scene-bowl .master-plan-asset {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none;
 }
 
-.translation-comic-scene-map .translation-comic-asset {
-    width: min(42%, 160px);
-    height: auto;
-    object-fit: contain;
-    transform: translateY(0.4rem);
+.master-plan-scene-map .master-plan-asset {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none;
 }
 
-.translation-comic-scene-orders .translation-comic-asset {
-    width: min(46%, 170px);
-    height: auto;
-    object-fit: contain;
+.master-plan-scene-orders .master-plan-asset {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none;
 }
 
-.translation-comic-copy {
+.master-plan-copy {
     max-width: 44rem;
 }
 
-.translation-comic-kicker {
+.master-plan-kicker {
     margin: 0 0 0.55rem;
     color: var(--team-mint);
     font-size: 0.78rem;
@@ -121,13 +123,13 @@
     text-transform: uppercase;
 }
 
-.translation-comic-copy h3 {
+.master-plan-copy h3 {
     margin: 0;
     font-size: clamp(1.8rem, 4vw, 3.6rem);
     line-height: 0.95;
 }
 
-.translation-comic-equation {
+.master-plan-equation {
     display: flex;
     flex-wrap: wrap;
     gap: clamp(0.65rem, 1.4vw, 1rem);
@@ -135,7 +137,7 @@
     margin-top: 1rem;
 }
 
-.translation-comic-equation-term {
+.master-plan-equation-term {
     display: grid;
     width: clamp(4.8rem, 7.5vw, 6.4rem);
     aspect-ratio: 1;
@@ -150,7 +152,7 @@
     box-shadow: 0 12px 34px rgba(0, 0, 0, 0.1);
 }
 
-.translation-comic-equation-term img {
+.master-plan-equation-term img {
     display: block;
     width: 100%;
     height: 100%;
@@ -162,21 +164,21 @@
     image-rendering: auto;
 }
 
-.translation-comic-equation-arrow {
+.master-plan-equation-arrow {
     color: var(--team-mint);
     font-size: clamp(1.35rem, 2.5vw, 2rem);
     font-weight: var(--font-weight-bold, 800);
     line-height: 1;
 }
 
-.translation-comic-copy p:last-child {
+.master-plan-copy p:last-child {
     margin: 1rem 0 0;
     color: var(--team-muted);
     font-size: clamp(1rem, 1.5vw, 1.18rem);
     line-height: 1.6;
 }
 
-.translation-comic-punchline {
+.master-plan-punchline {
     display: grid;
     gap: 0.4rem;
     max-width: 760px;
@@ -184,28 +186,28 @@
     text-align: center;
 }
 
-.translation-comic-punchline span {
+.master-plan-punchline span {
     color: var(--team-mint);
     font-size: clamp(1.4rem, 4vw, 3rem);
     font-weight: var(--font-weight-bold, 800);
     line-height: 1;
 }
 
-.translation-comic-punchline strong {
+.master-plan-punchline strong {
     color: var(--team-ink);
 }
 
 @media (max-width: 780px) {
-    .translation-comic-scene,
-    .translation-comic-scene:nth-child(even) {
+    .master-plan-scene,
+    .master-plan-scene:nth-child(even) {
         grid-template-columns: 1fr;
     }
 
-    .translation-comic-scene:nth-child(even) .translation-comic-art {
+    .master-plan-scene:nth-child(even) .master-plan-art {
         order: 0;
     }
 
-    .translation-comic-art {
+    .master-plan-art {
         min-height: auto;
     }
 }

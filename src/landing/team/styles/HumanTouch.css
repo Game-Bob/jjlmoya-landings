@@ -1,0 +1,426 @@
+.human-touch {
+    position: relative;
+    overflow: hidden;
+}
+
+.human-touch::before,
+.human-touch::after {
+    position: absolute;
+    pointer-events: none;
+    content: "";
+}
+
+.human-touch::before {
+    inset: 8% -10%;
+    background:
+        radial-gradient(circle at 14% 20%, color-mix(in srgb, var(--team-pink) 34%, transparent), transparent 18%),
+        radial-gradient(circle at 86% 28%, color-mix(in srgb, var(--team-mint) 32%, transparent), transparent 18%),
+        radial-gradient(circle at 54% 88%, color-mix(in srgb, var(--team-gold) 28%, transparent), transparent 20%);
+    filter: blur(6px);
+    opacity: 0.75;
+    animation: human-touch-bg 5s linear infinite;
+}
+
+.human-touch::after {
+    inset: 0;
+    background:
+        linear-gradient(115deg, transparent 0 42%, rgba(255, 255, 255, 0.08) 43% 45%, transparent 46%),
+        linear-gradient(245deg, transparent 0 54%, rgba(45, 212, 191, 0.1) 55% 57%, transparent 58%);
+    animation: human-touch-scan 2.2s ease-in-out infinite;
+}
+
+.human-touch-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+}
+
+.human-touch-copy {
+    position: relative;
+}
+
+.human-touch-copy .team-section-title {
+    text-shadow:
+        0 0 18px color-mix(in srgb, var(--team-mint) 34%, transparent),
+        0 0 42px color-mix(in srgb, var(--team-pink) 24%, transparent);
+    animation: human-touch-title 1.8s ease-in-out infinite;
+}
+
+.human-touch-chipstorm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+}
+
+.human-touch-chipstorm span {
+    display: inline-flex;
+    border: 1px solid color-mix(in srgb, var(--team-mint) 45%, var(--team-border));
+    border-radius: 999px;
+    padding: 0.5rem 0.72rem;
+    background: color-mix(in srgb, var(--team-surface) 78%, transparent);
+    color: var(--team-ink);
+    font-size: 0.84rem;
+    font-weight: var(--font-weight-bold, 800);
+    box-shadow: 0 0 24px color-mix(in srgb, var(--team-mint) 18%, transparent);
+    animation: human-touch-chip 1.6s ease-in-out infinite;
+}
+
+.human-touch-chipstorm span:nth-child(2n) {
+    border-color: color-mix(in srgb, var(--team-pink) 52%, var(--team-border));
+    animation-delay: -0.4s;
+}
+
+.human-touch-chipstorm span:nth-child(3n) {
+    border-color: color-mix(in srgb, var(--team-gold) 58%, var(--team-border));
+    animation-delay: -0.8s;
+}
+
+.human-touch-board {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    border: 1px solid color-mix(in srgb, var(--team-mint) 52%, var(--team-border));
+    border-radius: 18px;
+    padding: clamp(1rem, 3vw, 1.4rem);
+    background:
+        linear-gradient(135deg, color-mix(in srgb, var(--team-surface-strong) 86%, transparent), color-mix(in srgb, var(--team-surface) 72%, transparent)),
+        repeating-linear-gradient(90deg, transparent 0 18px, rgba(45, 212, 191, 0.055) 19px 20px);
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.18),
+        0 0 44px color-mix(in srgb, var(--team-mint) 20%, transparent);
+    animation: human-touch-board 2.4s ease-in-out infinite;
+}
+
+.human-touch-alert {
+    justify-self: start;
+    border-radius: 999px;
+    padding: 0.48rem 0.7rem;
+    background: var(--team-pink);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: var(--font-weight-bold, 800);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 0 28px color-mix(in srgb, var(--team-pink) 55%, transparent);
+    animation: human-touch-alert 0.9s steps(2, end) infinite;
+}
+
+.human-touch-card {
+    display: grid;
+    grid-template-columns: minmax(110px, 0.42fr) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+}
+
+.human-touch-human {
+    position: relative;
+    display: grid;
+    min-height: 180px;
+    place-items: end center;
+    overflow: hidden;
+    border-radius: 14px;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.22), transparent 26%),
+        linear-gradient(180deg, #252a36, #101318);
+}
+
+.human-touch-portrait {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+}
+
+.human-touch-portrait-base,
+.human-touch-portrait-wink {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.35));
+    animation: human-touch-human 1.2s ease-in-out infinite;
+}
+
+.human-touch-portrait-wink {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation:
+        human-touch-human 1.2s ease-in-out infinite,
+        human-touch-wink 7s ease-in-out infinite;
+}
+
+.human-touch-human span {
+    position: absolute;
+    right: 0.65rem;
+    bottom: 0.65rem;
+    left: 0.65rem;
+    z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.55rem 0.65rem;
+    background: rgba(0, 0, 0, 0.54);
+    color: #fff;
+    font-size: 0.76rem;
+    font-weight: var(--font-weight-bold, 800);
+    line-height: 1.25;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+.human-touch-id p {
+    margin: 0;
+    font-size: clamp(2.1rem, 5vw, 4rem);
+    font-weight: var(--font-weight-bold, 800);
+    letter-spacing: 0;
+    line-height: 0.9;
+}
+
+.human-touch-id strong,
+.human-touch-id span {
+    display: block;
+}
+
+.human-touch-id strong {
+    margin-top: 0.45rem;
+    color: var(--team-mint);
+}
+
+.human-touch-id span {
+    margin-top: 0.45rem;
+    color: var(--team-muted);
+    line-height: 1.5;
+}
+
+.human-touch-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.human-touch-stats div {
+    border: 1px solid var(--team-border);
+    border-radius: 12px;
+    padding: 0.85rem;
+    background: color-mix(in srgb, var(--team-surface) 72%, transparent);
+    animation: human-touch-stat 1.8s ease-in-out infinite;
+}
+
+.human-touch-stats div:nth-child(2n) {
+    animation-delay: -0.6s;
+}
+
+.human-touch-stats span {
+    display: block;
+    color: var(--team-muted);
+    font-size: 0.74rem;
+    font-weight: var(--font-weight-bold, 800);
+    text-transform: uppercase;
+}
+
+.human-touch-stats strong {
+    display: block;
+    margin-top: 0.3rem;
+    color: var(--team-ink);
+    font-size: 1.05rem;
+}
+
+.human-touch-bob-stamp {
+    position: absolute;
+    right: -1.2rem;
+    bottom: -1.5rem;
+    display: grid;
+    gap: 0.3rem;
+    justify-items: center;
+    width: min(34vw, 190px);
+    rotate: -8deg;
+    animation: human-touch-stamp 1.4s ease-in-out infinite;
+}
+
+.human-touch-bob-stamp img {
+    width: min(100%, 150px);
+    max-height: 230px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 26px rgba(0, 0, 0, 0.36));
+}
+
+.human-touch-bob-stamp span {
+    border: 1px solid color-mix(in srgb, var(--team-gold) 70%, transparent);
+    border-radius: 999px;
+    padding: 0.38rem 0.55rem;
+    background: color-mix(in srgb, var(--team-surface) 86%, transparent);
+    color: var(--team-gold);
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-bold, 800);
+    text-align: center;
+}
+
+.human-touch-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.human-touch-links a {
+    display: inline-flex;
+    min-height: 2.7rem;
+    align-items: center;
+    border: 1px solid color-mix(in srgb, var(--team-mint) 58%, var(--team-border));
+    border-radius: 999px;
+    padding: 0.55rem 0.9rem;
+    background: color-mix(in srgb, var(--team-surface) 78%, transparent);
+    color: var(--team-ink);
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-bold, 800);
+    text-decoration: none;
+    box-shadow: 0 0 26px color-mix(in srgb, var(--team-mint) 16%, transparent);
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.human-touch-links a:hover {
+    border-color: color-mix(in srgb, var(--team-pink) 70%, var(--team-border));
+    box-shadow: 0 0 34px color-mix(in srgb, var(--team-pink) 20%, transparent);
+    transform: translateY(-3px) rotate(-1deg);
+}
+
+@keyframes human-touch-bg {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate3d(0.8rem, -0.6rem, 0) rotate(1deg);
+    }
+}
+
+@keyframes human-touch-scan {
+    0%,
+    100% {
+        opacity: 0.24;
+        transform: translateX(-1rem);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: translateX(1rem);
+    }
+}
+
+@keyframes human-touch-title {
+    0%,
+    100% {
+        transform: skewX(0deg);
+    }
+
+    50% {
+        transform: skewX(-2deg);
+    }
+}
+
+@keyframes human-touch-chip {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-0.35rem) rotate(1.5deg);
+    }
+}
+
+@keyframes human-touch-board {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-0.35rem);
+    }
+}
+
+@keyframes human-touch-alert {
+    50% {
+        filter: hue-rotate(50deg) brightness(1.25);
+    }
+}
+
+@keyframes human-touch-human {
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-0.4rem) scale(1.03);
+    }
+}
+
+@keyframes human-touch-wink {
+    0%, 88%, 100% {
+        opacity: 0;
+    }
+
+    90%, 95% {
+        opacity: 1;
+    }
+}
+
+@keyframes human-touch-stat {
+    50% {
+        border-color: color-mix(in srgb, var(--team-mint) 50%, var(--team-border));
+        box-shadow: 0 0 22px color-mix(in srgb, var(--team-mint) 13%, transparent);
+    }
+}
+
+@keyframes human-touch-stamp {
+    0%,
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(4deg) scale(1.04);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .human-touch,
+    .human-touch *,
+    .human-touch::before,
+    .human-touch::after {
+        animation: none !important;
+    }
+}
+
+@media (max-width: 860px) {
+    .human-touch-shell {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .human-touch-card,
+    .human-touch-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .human-touch-bob-stamp {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        justify-self: center;
+        margin-top: 0.5rem;
+    }
+}

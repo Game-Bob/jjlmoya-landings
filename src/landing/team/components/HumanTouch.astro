@@ -1,0 +1,133 @@
+---
+import "../styles/HumanTouch.css";
+import tinderProfile from "../assets/jjlmoya/tinder-profile.webp";
+import tinderProfileWinked from "../assets/jjlmoya/tinder-profile-winked.webp";
+import bobPointingSprite from "../assets/bob-model-book/bob-pointing.webp";
+
+const stats = [
+    ["Base", "Mallorca, España"],
+    ["Rol", "Developer"],
+    ["Experiencia", "Más de una vida gatuna"],
+    ["Idiomas", "ES · CA · EN"],
+];
+
+const chips = [
+    "Frontend",
+    "Apps",
+    "Webs",
+    "Automatización",
+    "Producto",
+    "Interfaces",
+    "Rendimiento",
+    "Accesibilidad",
+    "Privacidad",
+    "Ideas útiles",
+];
+---
+
+<section class="team-section human-touch" aria-labelledby="human-touch-title">
+    <div class="team-landing-inner">
+        <div class="human-touch-shell">
+            <div class="human-touch-copy">
+                <p class="team-section-eyebrow">Recurso humano</p>
+                <h2 class="team-section-title" id="human-touch-title">
+                    El Humano
+                </h2>
+                <p class="team-section-text">
+                    jjlmoya es un developer frontend con más de una vida gatuna
+                    de experiencia. Construye apps, webs y automatizaciones con
+                    mentalidad de artesano: convertir ideas en productos útiles,
+                    rápidos y fáciles de entender.
+                </p>
+
+                <div
+                    class="human-touch-chipstorm"
+                    aria-label="Áreas del humano"
+                >
+                    {chips.map((chip) => <span>{chip}</span>)}
+                </div>
+            </div>
+
+            <div
+                class="human-touch-board"
+                aria-label="Ficha operativa del humano"
+            >
+                <div class="human-touch-alert">
+                    FICHA HUMANA DE ALTA DOPAMINA
+                </div>
+                <div class="human-touch-card">
+                    <div class="human-touch-human">
+                        <div class="human-touch-portrait">
+                            <img
+                                src={tinderProfile.src}
+                                width={tinderProfile.width}
+                                height={tinderProfile.height}
+                                alt="jjlmoya en una foto de perfil falsamente sexy"
+                                loading="lazy"
+                                class="human-touch-portrait-base"
+                            />
+                            <img
+                                src={tinderProfileWinked.src}
+                                width={tinderProfileWinked.width}
+                                height={tinderProfileWinked.height}
+                                alt=""
+                                aria-hidden="true"
+                                loading="lazy"
+                                class="human-touch-portrait-wink"
+                            />
+                        </div>
+                        <span>Pose Obligada</span>
+                    </div>
+                    <div class="human-touch-id">
+                        <p>jjlmoya</p>
+                        <strong>Developer frontend</strong>
+                        <span
+                            >Transforma curiosidades, problemas y detalles
+                            cotidianos en herramientas, experiencias
+                            interactivas y sistemas que pueden crecer durante
+                            años.</span
+                        >
+                    </div>
+                </div>
+
+                <div class="human-touch-stats">
+                    {
+                        stats.map(([label, value]) => (
+                            <div>
+                                <span>{label}</span>
+                                <strong>{value}</strong>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div class="human-touch-bob-stamp" aria-hidden="true">
+                    <img
+                        src={bobPointingSprite.src}
+                        width={bobPointingSprite.width}
+                        height={bobPointingSprite.height}
+                        alt=""
+                        loading="lazy"
+                    />
+                    <span>¡TOQUE HUMANO OBLIGATORIO!</span>
+                </div>
+
+                <div
+                    class="human-touch-links"
+                    aria-label="Enlaces profesionales"
+                >
+                    <a
+                        href="https://es.linkedin.com/in/jjlmoya"
+                        target="_blank"
+                        rel="noreferrer">LinkedIn</a
+                    >
+                    <a
+                        href="https://github.com/jjlmoya"
+                        target="_blank"
+                        rel="noreferrer">GitHub</a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

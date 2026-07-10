@@ -2,7 +2,10 @@
 import '../styles/BobMasterPlan.css';
 import bobSprite from '../assets/bob.webp';
 import jjSprite from '../assets/jj.webp';
-import translationDiscovery from '../assets/translation-discovery.png';
+import scene1 from '../assets/webcomic/scene-1.webp';
+import scene2 from '../assets/webcomic/scene-2.webp';
+import scene3 from '../assets/webcomic/scene-3.webp';
+import scene4 from '../assets/webcomic/scene-4.webp';
 import formulaMoney from '../assets/master-plan-money.webp';
 import formulaFood from '../assets/master-plan-food.webp';
 import formulaMoreMoney from '../assets/master-plan-more-money.webp';
@@ -32,7 +35,7 @@ const scenes = [
         title: 'Bob descubrió el sistema.',
         text: 'Un día cometí un error irreparable: le dejé ver cómo conseguía su comida. Ese día Bob lo empezó a entender todo.',
         visual: 'money',
-        asset: translationDiscovery,
+        asset: scene1,
         assetAlt: '',
         formula: [
             { label: 'Dinero', asset: formulaMoney },
@@ -41,11 +44,11 @@ const scenes = [
     },
     {
         number: '02',
-        label: 'La revelación',
-        title: 'La lógica era impecable.',
-        text: 'Si el dinero compra comida, más dinero compra más comida. Peligrosamente simple. Peligrosamente Bob.',
+        label: 'El sueño',
+        title: 'El estómago marcó el rumbo.',
+        text: 'Bob soñó día y noche sin parar y llegó a la conclusión de que si le gustaría tener muchísima más comida.',
         visual: 'bowl',
-        asset: bobSprite,
+        asset: scene2,
         assetAlt: '',
         formula: [
             { label: 'Más dinero', asset: formulaMoreMoney },
@@ -58,7 +61,7 @@ const scenes = [
         title: 'Bob pensó en ingresos.',
         text: 'Bob no se conformó con entender el sistema. Empezó a preguntarse cómo producir dinero de forma recurrente, preferiblemente sin mover una pata.',
         visual: 'map',
-        asset: bobSprite,
+        asset: scene3,
         assetAlt: '',
         formula: [
             { label: 'Herramientas', asset: formulaTools },
@@ -71,7 +74,7 @@ const scenes = [
         title: 'El humano recibió la orden.',
         text: 'La orden fue sencilla: el humano construiría herramientas, juegos y páginas. Bob supervisaría la estrategia. La comida financiaría la visión.',
         visual: 'orders',
-        asset: jjSprite,
+        asset: scene4,
         assetAlt: '',
         formula: [
             { label: 'Más proyectos', asset: formulaProjects },
@@ -81,26 +84,26 @@ const scenes = [
 ];
 ---
 
-<section class="team-section translation-comic" aria-labelledby="translation-comic-title">
+<section class="team-section master-plan" aria-labelledby="master-plan-title">
     <div class="team-landing-inner">
-        <div class="translation-comic-header">
+        <div class="master-plan-header">
             <p class="team-section-eyebrow">{t.eyebrow}</p>
-            <h2 class="team-section-title" id="translation-comic-title">Cómo empezó todo</h2>
+            <h2 class="team-section-title" id="master-plan-title">Cómo empezó todo</h2>
             <p class="team-section-text">
                 El Plan Maestro de Bob para apoderarse de tu dinero empezó con una revelación sencilla: el dinero podía
                 convertirse en comida. Desde entonces, nada volvió a ser operacionalmente seguro.
             </p>
         </div>
 
-        <div class="translation-comic-strip" aria-label={t.languagesLabel}>
+        <div class="master-plan-strip" aria-label={t.languagesLabel}>
             {
                 scenes.map((scene) => (
-                    <article class={`translation-comic-scene translation-comic-scene-${scene.visual}`}>
-                        <div class="translation-comic-art" aria-hidden="true">
-                            <span class="translation-comic-frame-label">{scene.number}</span>
-                            <span class="translation-comic-placeholder">
+                    <article class={`master-plan-scene master-plan-scene-${scene.visual}`}>
+                        <div class="master-plan-art" aria-hidden="true">
+                            <span class="master-plan-frame-label">{scene.number}</span>
+                            <span class="master-plan-placeholder">
                                 <img
-                                    class="translation-comic-asset"
+                                    class="master-plan-asset"
                                     src={scene.asset.src}
                                     width={scene.asset.width}
                                     height={scene.asset.height}
@@ -109,13 +112,13 @@ const scenes = [
                                 />
                             </span>
                         </div>
-                        <div class="translation-comic-copy">
-                            <p class="translation-comic-kicker">{scene.label}</p>
+                        <div class="master-plan-copy">
+                            <p class="master-plan-kicker">{scene.label}</p>
                             <h3>{scene.title}</h3>
                             {
                                 scene.formula && (
-                                    <div class="translation-comic-equation">
-                                        <span class="translation-comic-equation-term">
+                                    <div class="master-plan-equation">
+                                        <span class="master-plan-equation-term">
                                             <img
                                                 src={scene.formula[0].asset.src}
                                                 width={scene.formula[0].asset.width}
@@ -124,8 +127,8 @@ const scenes = [
                                                 loading="lazy"
                                             />
                                         </span>
-                                        <span class="translation-comic-equation-arrow" aria-hidden="true">&gt;</span>
-                                        <span class="translation-comic-equation-term">
+                                        <span class="master-plan-equation-arrow" aria-hidden="true">&gt;</span>
+                                        <span class="master-plan-equation-term">
                                             <img
                                                 src={scene.formula[1].asset.src}
                                                 width={scene.formula[1].asset.width}
@@ -144,7 +147,7 @@ const scenes = [
             }
         </div>
 
-        <p class="translation-comic-punchline">
+        <p class="master-plan-punchline">
             <span>{t.quote}</span>
             <strong>El plan era simple. El humano sigue recuperándose.</strong>
         </p>
