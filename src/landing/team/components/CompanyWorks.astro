@@ -31,8 +31,8 @@ const members = [
     {
         id: 'bob',
         name: 'Bob',
-        role: t.members.bob.role,
-        status: t.members.bob.status,
+        role: 'CEO: Gata Jefa',
+        status: 'Nivel de autoridad: Incuestionable. Comedora profesional',
         dossier: t.members.bob.dossier,
         hierarchy: 'chief',
         mark: 'B',
@@ -41,10 +41,10 @@ const members = [
     {
         id: 'terra',
         name: 'Terra',
-        role: t.members.terra.role,
+        role: 'La Matriarca',
         status: t.members.terra.status,
         dossier: t.members.terra.dossier,
-        hierarchy: 'matriarch',
+        hierarchy: 'orbit orbit-terra',
         mark: 'T',
         sprite: terraSprite,
     },
@@ -54,7 +54,7 @@ const members = [
         role: t.members.ambar.role,
         status: t.members.ambar.status,
         dossier: t.members.ambar.dossier,
-        hierarchy: 'standard',
+        hierarchy: 'orbit orbit-ambar',
         mark: 'A',
         sprite: ambarSprite,
     },
@@ -64,7 +64,7 @@ const members = [
         role: t.members.ambarChiquilla.role,
         status: t.members.ambarChiquilla.status,
         dossier: t.members.ambarChiquilla.dossier,
-        hierarchy: 'standard',
+        hierarchy: 'orbit orbit-chiquilla',
         mark: 'AC',
         sprite: ambarChiquillaSprite,
     },
@@ -74,7 +74,7 @@ const members = [
         role: t.members.drac.role,
         status: t.members.drac.status,
         dossier: t.members.drac.dossier,
-        hierarchy: 'standard',
+        hierarchy: 'orbit orbit-drac',
         mark: 'D',
         sprite: dracSprite,
     },
@@ -84,7 +84,7 @@ const members = [
         role: t.members.jj.role,
         status: t.members.jj.status,
         dossier: t.members.jj.dossier,
-        hierarchy: 'standard',
+        hierarchy: 'human',
         mark: 'JJ',
         sprite: jjSprite,
     },
@@ -100,6 +100,7 @@ const members = [
         </p>
 
         <div class="company-works-system" data-company-grid>
+            <div class="company-works-orbit-ring" aria-hidden="true"></div>
             {
                 members.map((member) => (
                     <button
@@ -145,6 +146,11 @@ const members = [
     const drawer = document.querySelector<HTMLElement>('[data-company-drawer]');
     const closeButton = document.querySelector<HTMLButtonElement>('[data-company-close]');
     const focusLayer = document.querySelector<HTMLElement>('[data-company-focus]');
+    const closeDrawer = () => {
+        drawer?.classList.remove('is-open');
+        drawer?.setAttribute('aria-hidden', 'true');
+        focusLayer?.classList.remove('is-drawer-open');
+    };
 
     document.querySelectorAll<HTMLButtonElement>('[data-dossier-name]').forEach((card) => {
         card.addEventListener('mouseenter', () => {
@@ -166,11 +172,10 @@ const members = [
             drawer.querySelector('[data-company-drawer-copy]')!.textContent = card.dataset.dossierCopy ?? '';
             drawer.classList.add('is-open');
             drawer.setAttribute('aria-hidden', 'false');
+            focusLayer?.classList.add('is-drawer-open');
         });
     });
 
-    closeButton?.addEventListener('click', () => {
-        drawer?.classList.remove('is-open');
-        drawer?.setAttribute('aria-hidden', 'true');
-    });
+    closeButton?.addEventListener('click', closeDrawer);
+    focusLayer?.addEventListener('click', closeDrawer);
 </script>

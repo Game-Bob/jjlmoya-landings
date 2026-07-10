@@ -17,7 +17,7 @@ export const pageContent = {
     companyWorks: {
         eyebrow: 'Cómo funciona esta empresa',
         title: 'La Junta Felina',
-        text: 'GameBob se organiza por autoridad real, no por fantasía corporativa. Bob y Terra dominan la junta. JJ implementa las decisiones.',
+        text: 'GameBob se organiza por autoridad real, no por fantasía corporativa. Bob domina la junta. Nada de modelos horizontales: todo es vertical, incuestionable y ligeramente intimidante. La democracia no se vislumbra ni hoy, ni mañana, ni nunca.',
         secretDossier: 'Dossier técnico secreto',
         closeDossier: 'Cerrar dossier',
         members: {
