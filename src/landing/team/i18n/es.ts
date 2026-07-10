@@ -92,14 +92,16 @@ export const pageContent = {
     },
     productManifesto: {
         eyebrow: 'Filosofía de producto',
-        title: 'Un pequeño manifiesto con huellas en los márgenes.',
+        title: 'Alta calidad para alto beneficio.',
+        description: 'La gata ha leído cientos de manuales de SEO para optimizar cada pedazo de la página, lleva 5 libros de marketing digital y está empezando a leer sobre estoicismo. Estas son las reglas que me ha puesto para pasar el cribado y conseguir su sello de calidad.',
         values: [
             'Útil',
             'Visual',
             'Rápido',
             'Divertido',
-            'A veces raro',
-            'Hecho con cariño'
+            'Único',
+            'Privacidad',
+            'Miau'
         ]
     },
     memoryWall: {
@@ -115,9 +117,9 @@ export const pageContent = {
     },
     supportTransition: {
         eyebrow: 'La junta está abierta a',
-        title: 'Ideas, informes de errores, correcciones de traducción y soporte del proyecto.',
-        text: 'La junta ejecutiva no puede prometer respuestas rápidas. Principalmente porque son gatos. El departamento humano seguirá leyendo todo con cuidado.',
-        linkText: 'Ir a Soporte',
+        title: 'Feedback.',
+        text: 'Ideas, informes de errores, correcciones de traducción y soporte del proyecto. La junta ejecutiva no puede prometer respuestas rápidas. Principalmente porque son gatos. El departamento humano seguirá leyendo todo con cuidado.',
+        linkText: 'Ir a Apóyanos',
         inbox: {
             ideas: 'ideas',
             bugs: 'errores',

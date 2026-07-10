@@ -1,23 +1,47 @@
 ---
 import '../styles/ProductManifesto.css';
+import sealOfApproval from '../assets/seal-of-approval.webp';
 
 interface Props {
     t: {
         eyebrow: string;
         title: string;
+        description: string;
         values: string[];
     };
 }
 
 const { t } = Astro.props;
+
+const regularValues = t.values.slice(0, -1);
+const lastValue = t.values[t.values.length - 1];
 ---
 
 <section class="team-section product-manifesto" aria-labelledby="product-manifesto-title">
     <div class="team-landing-inner">
-        <p class="team-section-eyebrow">{t.eyebrow}</p>
-        <h2 class="team-section-title" id="product-manifesto-title">{t.title}</h2>
-        <div class="product-manifesto-grid">
-            {t.values.map((value) => <div class="product-manifesto-tile">{value}</div>)}
+        <div class="product-manifesto-top">
+            <p class="team-section-eyebrow">{t.eyebrow}</p>
+            <h2 class="team-section-title" id="product-manifesto-title">{t.title}</h2>
+        </div>
+
+        <div class="product-manifesto-mid">
+            <p class="product-manifesto-description">{t.description}</p>
+            <div class="product-manifesto-seal" aria-hidden="true">
+                <img
+                    src={sealOfApproval.src}
+                    width={sealOfApproval.width}
+                    height={sealOfApproval.height}
+                    alt=""
+                    loading="lazy"
+                />
+            </div>
+        </div>
+
+        <div class="product-manifesto-list" role="list" aria-label={t.eyebrow}>
+            {regularValues.map((value) => (
+                <span class="product-manifesto-item" role="listitem">{value}</span>
+            ))}
+            <span class="product-manifesto-item product-manifesto-item-miau" role="listitem">{lastValue}</span>
         </div>
     </div>
 </section>

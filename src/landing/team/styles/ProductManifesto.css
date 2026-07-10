@@ -1,26 +1,164 @@
-.product-manifesto-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
+.product-manifesto-top {
+    max-width: 820px;
 }
 
-.product-manifesto-tile {
+.product-manifesto-mid {
     display: grid;
-    min-height: 180px;
-    place-items: center;
-    border: 1px solid var(--team-border);
-    border-radius: 20px;
-    padding: 1rem;
-    color: var(--team-ink);
-    font-size: clamp(1.6rem, 4vw, 3.2rem);
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.product-manifesto-description {
+    margin: 0;
+    max-width: 58ch;
+    color: var(--team-muted);
+    font-size: clamp(1rem, 1.5vw, 1.18rem);
+    line-height: 1.7;
+}
+
+.product-manifesto-seal {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-manifesto-seal::before {
+    position: absolute;
+    inset: -22%;
+    border-radius: 999px;
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--team-mint) 16%, transparent) 0%,
+        transparent 70%
+    );
+    content: "";
+    animation: product-manifesto-aura 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.product-manifesto-seal img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    filter:
+        brightness(0)
+        invert(1)
+        sepia(1)
+        saturate(6)
+        hue-rotate(130deg)
+        brightness(0.82)
+        drop-shadow(0 0 16px color-mix(in srgb, var(--team-mint) 65%, transparent))
+        drop-shadow(0 0 40px color-mix(in srgb, var(--team-mint) 30%, transparent));
+    animation: product-manifesto-spin 28s linear infinite;
+}
+
+.product-manifesto-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid color-mix(in srgb, var(--team-border) 60%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--team-border) 60%, transparent);
+}
+
+.product-manifesto-item {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.2rem, 2.5vw, 2rem) clamp(1rem, 2vw, 1.8rem);
+    color: color-mix(in srgb, var(--team-ink) 65%, transparent);
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
     font-weight: var(--font-weight-bold, 800);
-    line-height: 0.95;
     text-align: center;
+    cursor: default;
+    transition: color 0.2s ease;
+    white-space: nowrap;
 }
 
-@media (max-width: 780px) {
-    .product-manifesto-grid {
+.product-manifesto-item + .product-manifesto-item::before {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 1px;
+    height: 60%;
+    background: color-mix(in srgb, var(--team-border) 60%, transparent);
+    content: "";
+}
+
+.product-manifesto-item:hover {
+    color: var(--team-mint);
+}
+
+.product-manifesto-item-miau {
+    color: var(--team-pink);
+    opacity: 0.9;
+}
+
+.product-manifesto-item-miau:hover {
+    color: var(--team-pink);
+    opacity: 1;
+}
+
+@keyframes product-manifesto-aura {
+    0%, 100% {
+        opacity: 0.55;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes product-manifesto-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-manifesto-seal img,
+    .product-manifesto-seal::before {
+        animation: none;
+    }
+}
+
+@media (max-width: 860px) {
+    .product-manifesto-mid {
         grid-template-columns: 1fr;
+    }
+
+    .product-manifesto-seal {
+        order: -1;
+    }
+
+    .product-manifesto-seal img {
+        max-width: 180px;
+    }
+
+    .product-manifesto-list {
+        flex-wrap: wrap;
+    }
+
+    .product-manifesto-item {
+        flex: 1 1 33%;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-manifesto-item {
+        flex: 1 1 50%;
     }
 }

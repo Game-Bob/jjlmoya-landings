@@ -1,6 +1,7 @@
 ---
 import type { KnownLocale } from '../../../types';
 import '../styles/SupportTransition.css';
+import feedbackImage from '../assets/feedback.webp';
 
 interface Props {
     locale: KnownLocale;
@@ -23,8 +24,8 @@ const supportHref = `/${locale}/support`;
 ---
 
 <section class="team-section support-transition" aria-labelledby="support-transition-title">
-    <div class="team-landing-inner support-transition-grid">
-        <div>
+    <div class="team-landing-inner support-transition-layout">
+        <div class="support-transition-content">
             <p class="team-section-eyebrow">{t.eyebrow}</p>
             <h2 class="team-section-title" id="support-transition-title">{t.title}</h2>
             <p class="team-section-text">
@@ -32,11 +33,22 @@ const supportHref = `/${locale}/support`;
             </p>
             <a class="support-transition-link" href={supportHref}>{t.linkText}</a>
         </div>
-        <div class="support-transition-inbox" aria-hidden="true">
-            <span>{t.inbox.ideas}</span>
-            <span>{t.inbox.bugs}</span>
-            <span>{t.inbox.fixes}</span>
-            <span>{t.inbox.support}</span>
+        
+        <div class="support-transition-visual" aria-hidden="true">
+            <div class="support-transition-zzz">
+                <span>Z</span>
+                <span>z</span>
+                <span>z</span>
+            </div>
+            <div class="support-transition-frame">
+                <img
+                    src={feedbackImage.src}
+                    width={feedbackImage.width}
+                    height={feedbackImage.height}
+                    alt=""
+                    loading="lazy"
+                />
+            </div>
         </div>
     </div>
 </section>

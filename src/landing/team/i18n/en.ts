@@ -92,14 +92,16 @@ export const pageContent = {
     },
     productManifesto: {
         eyebrow: 'Product philosophy',
-        title: 'A tiny manifesto with pawprints in the margins.',
+        title: 'High quality for high benefit.',
+        description: 'The cat has read hundreds of SEO manuals to optimise every piece of the page, has five digital marketing books under her belt and is starting to read about stoicism. These are the rules she set for passing the vetting and earning her seal of quality.',
         values: [
             'Useful',
             'Visual',
             'Fast',
             'Playful',
-            'Sometimes weird',
-            'Made with care'
+            'Unique',
+            'Privacy',
+            'Meow'
         ]
     },
     memoryWall: {
@@ -115,9 +117,9 @@ export const pageContent = {
     },
     supportTransition: {
         eyebrow: 'The board is open to',
-        title: 'Ideas, bug reports, translation fixes and project support.',
-        text: 'The executive board cannot promise fast replies. Mostly because they are cats. The human department will still read everything with care.',
-        linkText: 'Go to Support',
+        title: 'Feedback.',
+        text: 'Ideas, bug reports, translation fixes and project support. The executive board cannot promise fast replies. Mostly because they are cats. The human department will still read everything with care.',
+        linkText: 'Support Us!',
         inbox: {
             ideas: 'ideas',
             bugs: 'bugs',

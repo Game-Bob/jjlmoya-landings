@@ -5,7 +5,6 @@ import CompanyWorks from './components/CompanyWorks.astro';
 import BobMasterPlan from './components/BobMasterPlan.astro';
 import HumanTouch from './components/HumanTouch.astro';
 import ProductManifesto from './components/ProductManifesto.astro';
-import MemoryWall from './components/MemoryWall.astro';
 import BobModelBook from './components/BobModelBook.astro';
 import SupportTransition from './components/SupportTransition.astro';
 import { getTranslation } from './i18n';
@@ -24,7 +23,6 @@ const { pageContent } = getTranslation(locale);
     <BobMasterPlan t={pageContent.translationComic} />
     <HumanTouch />
     <ProductManifesto t={pageContent.productManifesto} />
-    <MemoryWall t={pageContent.memoryWall} />
     <BobModelBook />
     <SupportTransition locale={locale} t={pageContent.supportTransition} />
 </div>

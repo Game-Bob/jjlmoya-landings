@@ -1,17 +1,15 @@
 ---
-import '../styles/BobMasterPlan.css';
-import bobSprite from '../assets/bob.webp';
-import jjSprite from '../assets/jj.webp';
-import scene1 from '../assets/webcomic/scene-1.webp';
-import scene2 from '../assets/webcomic/scene-2.webp';
-import scene3 from '../assets/webcomic/scene-3.webp';
-import scene4 from '../assets/webcomic/scene-4.webp';
-import formulaMoney from '../assets/master-plan-money.webp';
-import formulaFood from '../assets/master-plan-food.webp';
-import formulaMoreMoney from '../assets/master-plan-more-money.webp';
-import formulaMoreFood from '../assets/master-plan-more-food.webp';
-import formulaTools from '../assets/master-plan-tools.webp';
-import formulaProjects from '../assets/master-plan-projects.webp';
+import "../styles/BobMasterPlan.css";
+import scene1 from "../assets/webcomic/scene-1.webp";
+import scene2 from "../assets/webcomic/scene-2.webp";
+import scene3 from "../assets/webcomic/scene-3.webp";
+import scene4 from "../assets/webcomic/scene-4.webp";
+import formulaMoney from "../assets/master-plan-money.webp";
+import formulaFood from "../assets/master-plan-food.webp";
+import formulaMoreMoney from "../assets/master-plan-more-money.webp";
+import formulaMoreFood from "../assets/master-plan-more-food.webp";
+import formulaTools from "../assets/master-plan-tools.webp";
+import formulaProjects from "../assets/master-plan-projects.webp";
 
 interface Props {
     t: {
@@ -30,55 +28,55 @@ const { t } = Astro.props;
 
 const scenes = [
     {
-        number: '01',
-        label: 'Mi gran error',
-        title: 'Bob descubrió el sistema.',
-        text: 'Un día cometí un error irreparable: le dejé ver cómo conseguía su comida. Ese día Bob lo empezó a entender todo.',
-        visual: 'money',
+        number: "01",
+        label: "Mi gran error",
+        title: "Bob descubrió el sistema.",
+        text: "Un día cometí un error irreparable: le dejé ver cómo conseguía su comida. Ese día Bob lo empezó a entender todo.",
+        visual: "money",
         asset: scene1,
-        assetAlt: '',
+        assetAlt: "",
         formula: [
-            { label: 'Dinero', asset: formulaMoney },
-            { label: 'Comida', asset: formulaFood },
+            { label: "Dinero", asset: formulaMoney },
+            { label: "Comida", asset: formulaFood },
         ],
     },
     {
-        number: '02',
-        label: 'El sueño',
-        title: 'El estómago marcó el rumbo.',
-        text: 'Bob soñó día y noche sin parar y llegó a la conclusión de que si le gustaría tener muchísima más comida.',
-        visual: 'bowl',
+        number: "02",
+        label: "El sueño",
+        title: "El estómago marcó el rumbo.",
+        text: "Bob soñó día y noche sin parar y llegó a la conclusión de que si le gustaría tener muchísima más comida.",
+        visual: "bowl",
         asset: scene2,
-        assetAlt: '',
+        assetAlt: "",
         formula: [
-            { label: 'Más dinero', asset: formulaMoreMoney },
-            { label: 'Más comida', asset: formulaMoreFood },
+            { label: "Más dinero", asset: formulaMoreMoney },
+            { label: "Más comida", asset: formulaMoreFood },
         ],
     },
     {
-        number: '03',
-        label: 'El plan maestro',
-        title: 'Bob pensó en ingresos.',
-        text: 'Bob no se conformó con entender el sistema. Empezó a preguntarse cómo producir dinero de forma recurrente, preferiblemente sin mover una pata.',
-        visual: 'map',
+        number: "03",
+        label: "El plan maestro",
+        title: "Bob pensó en ingresos.",
+        text: "Bob no se conformó con entender el sistema. Empezó a preguntarse cómo producir dinero de forma recurrente, preferiblemente sin mover una pata.",
+        visual: "map",
         asset: scene3,
-        assetAlt: '',
+        assetAlt: "",
         formula: [
-            { label: 'Herramientas', asset: formulaTools },
-            { label: 'Dinero', asset: formulaMoney },
+            { label: "Herramientas", asset: formulaTools },
+            { label: "Dinero", asset: formulaMoney },
         ],
     },
     {
-        number: '04',
-        label: 'Nace GameBob',
-        title: 'El humano recibió la orden.',
-        text: 'La orden fue sencilla: el humano construiría herramientas, juegos y páginas. Bob supervisaría la estrategia. La comida financiaría la visión.',
-        visual: 'orders',
+        number: "04",
+        label: "Nace GameBob",
+        title: "El humano recibió la orden.",
+        text: "La orden fue sencilla: el humano construiría herramientas, juegos y páginas. Bob supervisaría la estrategia. La comida financiaría la visión.",
+        visual: "orders",
         asset: scene4,
-        assetAlt: '',
+        assetAlt: "",
         formula: [
-            { label: 'Más proyectos', asset: formulaProjects },
-            { label: 'Más comida', asset: formulaMoreFood },
+            { label: "Más proyectos", asset: formulaProjects },
+            { label: "Más comida", asset: formulaMoreFood },
         ],
     },
 ];
@@ -88,19 +86,26 @@ const scenes = [
     <div class="team-landing-inner">
         <div class="master-plan-header">
             <p class="team-section-eyebrow">{t.eyebrow}</p>
-            <h2 class="team-section-title" id="master-plan-title">Cómo empezó todo</h2>
+            <h2 class="team-section-title" id="master-plan-title">
+                Cómo empezó todo
+            </h2>
             <p class="team-section-text">
-                El Plan Maestro de Bob para apoderarse de tu dinero empezó con una revelación sencilla: el dinero podía
-                convertirse en comida. Desde entonces, nada volvió a ser operacionalmente seguro.
+                El Plan Maestro de Bob para apoderarse de tu dinero empezó con
+                una revelación sencilla: el dinero podía convertirse en comida.
+                Desde entonces, nada volvió a ser operacionalmente seguro.
             </p>
         </div>
 
         <div class="master-plan-strip" aria-label={t.languagesLabel}>
             {
                 scenes.map((scene) => (
-                    <article class={`master-plan-scene master-plan-scene-${scene.visual}`}>
+                    <article
+                        class={`master-plan-scene master-plan-scene-${scene.visual}`}
+                    >
                         <div class="master-plan-art" aria-hidden="true">
-                            <span class="master-plan-frame-label">{scene.number}</span>
+                            <span class="master-plan-frame-label">
+                                {scene.number}
+                            </span>
                             <span class="master-plan-placeholder">
                                 <img
                                     class="master-plan-asset"
@@ -115,31 +120,38 @@ const scenes = [
                         <div class="master-plan-copy">
                             <p class="master-plan-kicker">{scene.label}</p>
                             <h3>{scene.title}</h3>
-                            {
-                                scene.formula && (
-                                    <div class="master-plan-equation">
-                                        <span class="master-plan-equation-term">
-                                            <img
-                                                src={scene.formula[0].asset.src}
-                                                width={scene.formula[0].asset.width}
-                                                height={scene.formula[0].asset.height}
-                                                alt={scene.formula[0].label}
-                                                loading="lazy"
-                                            />
-                                        </span>
-                                        <span class="master-plan-equation-arrow" aria-hidden="true">&gt;</span>
-                                        <span class="master-plan-equation-term">
-                                            <img
-                                                src={scene.formula[1].asset.src}
-                                                width={scene.formula[1].asset.width}
-                                                height={scene.formula[1].asset.height}
-                                                alt={scene.formula[1].label}
-                                                loading="lazy"
-                                            />
-                                        </span>
-                                    </div>
-                                )
-                            }
+                            {scene.formula && (
+                                <div class="master-plan-equation">
+                                    <span class="master-plan-equation-term">
+                                        <img
+                                            src={scene.formula[0].asset.src}
+                                            width={scene.formula[0].asset.width}
+                                            height={
+                                                scene.formula[0].asset.height
+                                            }
+                                            alt={scene.formula[0].label}
+                                            loading="lazy"
+                                        />
+                                    </span>
+                                    <span
+                                        class="master-plan-equation-arrow"
+                                        aria-hidden="true"
+                                    >
+                                        &gt;
+                                    </span>
+                                    <span class="master-plan-equation-term">
+                                        <img
+                                            src={scene.formula[1].asset.src}
+                                            width={scene.formula[1].asset.width}
+                                            height={
+                                                scene.formula[1].asset.height
+                                            }
+                                            alt={scene.formula[1].label}
+                                            loading="lazy"
+                                        />
+                                    </span>
+                                </div>
+                            )}
                             <p>{scene.text}</p>
                         </div>
                     </article>
