@@ -165,7 +165,7 @@ export default [
         },
     },
     {
-        files: ["**/pages/[locale]/[slug].astro"],
+        files: ["**/pages/*/*.astro"],
         rules: {
             "custom/no-css-comments": "off",
         },
