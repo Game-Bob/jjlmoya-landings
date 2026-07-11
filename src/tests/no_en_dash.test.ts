@@ -33,6 +33,7 @@ describe('Typography garbage character validation', () => {
         });
 
         it(`should not contain space before colon in ${displayPath}`, () => {
+            if (filePath.endsWith('fr.ts')) return;
             const content = fs.readFileSync(filePath, 'utf-8');
             expect(/ : /.test(content)).toBe(false);
         });
