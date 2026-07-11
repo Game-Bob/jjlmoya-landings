@@ -18,33 +18,46 @@
     align-items: flex-start;
 }
 
+.support-transition-group {
+    position: relative;
+    display: inline-flex;
+    margin-top: 1.8rem;
+}
+
 .support-transition-link {
     display: inline-flex;
     gap: 0.45rem;
     min-height: 2.8rem;
     align-items: center;
-    margin-top: 1.8rem;
     border: 0;
     border-radius: 999px;
     padding: 0.6rem 1.6rem;
-    background: var(--team-pink);
     color: var(--support-transition-inverse);
     font-size: 0.95rem;
     font-weight: var(--font-weight-bold, 800);
     text-decoration: none;
-    box-shadow: 0 8px 24px color-mix(in srgb, var(--team-pink) 35%, transparent);
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease,
         background-color 0.2s ease;
 }
 
-.support-transition-link small {
-    font-size: 0.72rem;
+.support-transition-coming-soon {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    z-index: 2;
+    border-radius: 999px;
+    background: var(--team-pink);
+    color: var(--support-transition-inverse);
+    padding: 0.15rem 0.5rem;
+    font-size: 0.62rem;
     font-weight: var(--font-weight-bold, 800);
-    letter-spacing: 0.02em;
-    opacity: 0.74;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(241, 90, 160, 0.4);
+    white-space: nowrap;
+    pointer-events: none;
 }
 
 .support-transition-link:hover {
@@ -55,10 +68,10 @@
 
 .support-transition-link.is-disabled,
 .support-transition-link.is-disabled:hover {
-    background: color-mix(in srgb, var(--team-pink) 42%, var(--team-surface-strong));
+    background: var(--team-pink);
     box-shadow: none;
     cursor: not-allowed;
-    opacity: 0.78;
+    opacity: 0.28;
     transform: none;
 }
 
@@ -236,7 +249,9 @@
 }
 
 @keyframes support-transition-morph {
-    0%, 100% {
+
+    0%,
+    100% {
         border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     }
 

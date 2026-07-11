@@ -165,6 +165,12 @@ export default [
         },
     },
     {
+        files: ["**/pages/[locale]/[slug].astro"],
+        rules: {
+            "custom/no-css-comments": "off",
+        },
+    },
+    {
         files: ["**/tests/**/*.ts", "**/*.test.ts"],
         rules: {
             "@typescript-eslint/no-explicit-any": "off",

@@ -33,10 +33,12 @@ void locale;
             <p class="team-section-text">
                 {t.text}
             </p>
-            <button class="support-transition-link is-disabled" type="button" disabled>
-                <span>{t.linkText}</span>
-                <small>{t.comingSoonLabel}</small>
-            </button>
+            <div class="support-transition-group">
+                <span class="support-transition-coming-soon">{t.comingSoonLabel}</span>
+                <button class="support-transition-link is-disabled" type="button" disabled>
+                    {t.linkText}
+                </button>
+            </div>
         </div>
         
         <div class="support-transition-visual" aria-hidden="true">
