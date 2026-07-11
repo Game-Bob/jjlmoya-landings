@@ -3,7 +3,9 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
-const consumerRoot = process.env.INIT_CWD || process.cwd();
+const consumerRoot = packageRoot.includes("node_modules")
+    ? join(packageRoot, "../../..")
+    : packageRoot;
 const publicRoot = join(consumerRoot, "public", "landings", "team");
 const styleFiles = [
     "team-landing.css",
