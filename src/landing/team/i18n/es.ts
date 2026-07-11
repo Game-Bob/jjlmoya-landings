@@ -178,11 +178,5 @@ export const pageContent = {
         text: 'Ideas, informes de errores, correcciones de traducción y soporte del proyecto. La junta ejecutiva no puede prometer respuestas rápidas. Principalmente porque son gatos. El recurso humano seguirá leyendo todo con cuidado.',
         linkText: 'Ir a Apóyanos',
         comingSoonLabel: 'Próximamente',
-        inbox: {
-            ideas: 'ideas',
-            bugs: 'errores',
-            fixes: 'correcciones',
-            support: 'soporte'
-        }
     }
 };
