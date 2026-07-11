@@ -1,9 +1,7 @@
 import type { KnownLocale } from '../../../types';
-import * as en from './en';
 import * as es from './es';
 
 const translations = {
-    en,
     es,
 };
 

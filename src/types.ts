@@ -8,9 +8,10 @@ export type LocaleMap<T> = Partial<Record<KnownLocale, LocaleLoader<T>>>;
 
 export interface LandingCardContent {
     slug: string;
-    title: string;
-    subtitle: string;
-    description: string;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    seo?: Pick<LandingSeoMetadata, 'title' | 'description'>;
 }
 
 export interface LandingPublicAssets {
@@ -19,8 +20,8 @@ export interface LandingPublicAssets {
 }
 
 export interface LandingSeoMetadata {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
     image: string;
     openGraphImage: string;
 }

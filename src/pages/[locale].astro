@@ -26,7 +26,7 @@ const landingsWithContent = await Promise.all(
         categoryTitle="Landings"
         apps={landingsWithContent.map(({ entry, card }) => ({
             id: entry.id,
-            title: card.title,
+            title: card.title || entry.id,
             href: `/${locale}/${card.slug}`,
         }))}
     />
@@ -43,9 +43,8 @@ const landingsWithContent = await Promise.all(
                     <article class="app-card">
                         <a href={`/${locale}/${card.slug}`} class="app-card-link">
                             <div class="app-card-content">
-                                <h2 class="app-title">{card.title}</h2>
-                                <p class="app-subtitle">{card.subtitle}</p>
-                                <p class="app-description">{card.description}</p>
+                                <h2 class="app-title">{card.title || card.seo?.title || entry.id}</h2>
+                                <p class="app-description">{card.description || card.seo?.description || ""}</p>
                             </div>
                             <div class="app-card-meta">
                                 <span class="app-id">{entry.id}</span>
