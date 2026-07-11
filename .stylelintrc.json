@@ -1,5 +1,6 @@
 {
     "extends": ["stylelint-config-standard"],
+    "ignoreFiles": ["src/styles/global.css", "src/styles/tokens.css"],
     "overrides": [
         {
             "files": ["**/*.astro"],

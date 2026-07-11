@@ -101,7 +101,7 @@ const customCommentsPlugin = {
 
 export default [
     {
-        ignores: ["**/dist/", "**/node_modules/", ".astro/", "**/.astro/**", "**/public/**"],
+        ignores: ["**/dist/", "**/node_modules/", ".astro/", "**/.astro/**", "**/public/**", "**/src/styles/global.css", "**/src/styles/tokens.css"],
     },
     ...tseslint.configs.recommended,
     ...eslintPluginAstro.configs["flat/recommended"],
