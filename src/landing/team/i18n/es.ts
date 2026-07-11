@@ -94,10 +94,10 @@ export const pageContent = {
     humanTouch: {
         eyebrow: 'Recurso humano',
         title: 'El Humano',
-        textBefore: 'Bob decidió que la empatía debía ser parte de esta página porque «los humanos conectan con humanos». Así que ordenó crear esta sección y, como sabe que padecemos de déficit de atención, exigió llenarla de animaciones y luces ',
+        textBefore: 'Bob decidió que la empatía debía ser parte de esta página porque "los humanos conectan con humanos". Así que ordenó crear esta sección y, como sabe que padecemos de déficit de atención, exigió llenarla de animaciones y luces ',
         wordWithRagebait: 'vrillantes',
         textAfter: '.',
-        ragebaitExplanation: 'Que todo el mundo se relaje: la «v» de vrillantes está puesta aposta. La junta felina asegura que señalar erratas aumenta las visitas un 400%.',
+        ragebaitExplanation: 'Que todo el mundo se relaje: la "v" de vrillantes está puesta aposta. La junta felina asegura que señalar erratas aumenta las visitas un 400%.',
         chipsLabel: 'Áreas del humano',
         boardLabel: 'Ficha operativa del humano',
         alert: 'FICHA HUMANA DE ALTA DOPAMINA',

@@ -200,6 +200,14 @@ const { t } = Astro.props;
     const humanTouchSeek = document.querySelector<HTMLElement>('[data-human-touch-seek]');
     const humanTouchCurrent = document.querySelector<HTMLElement>('[data-human-touch-current]');
 
+    humanTouchSeek?.addEventListener('click', (event) => {
+        if (!humanTouchAudio || !humanTouchSeek || !humanTouchAudio.duration) return;
+
+        const bounds = humanTouchSeek.getBoundingClientRect();
+        const ratio = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
+        humanTouchAudio.currentTime = ratio * humanTouchAudio.duration;
+    });
+
     const formatAudioTime = (seconds: number) => {
         if (!Number.isFinite(seconds)) return '0:00';
 
@@ -250,13 +258,5 @@ const { t } = Astro.props;
         }
 
         humanTouchAudio.pause();
-    });
-
-    humanTouchSeek?.addEventListener('click', (event) => {
-        if (!humanTouchAudio || !humanTouchSeek || !humanTouchAudio.duration) return;
-
-        const bounds = humanTouchSeek.getBoundingClientRect();
-        const ratio = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
-        humanTouchAudio.currentTime = ratio * humanTouchAudio.duration;
     });
 </script>

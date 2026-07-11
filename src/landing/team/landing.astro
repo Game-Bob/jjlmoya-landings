@@ -17,7 +17,11 @@ const { locale } = Astro.props;
 const { pageContent } = getTranslation(locale);
 ---
 <div class="team-landing" data-locale={locale}>
-    <TeamHero t={pageContent.hero} />
+    <TeamHero t={pageContent.hero}>
+        <h1 class="team-hero-title" id="team-hero-title" slot="title">
+            <span>{pageContent.hero.titlePrefix}</span><span class="team-hero-title-accent">{pageContent.hero.titleAccent}</span>
+        </h1>
+    </TeamHero>
     <CompanyWorks t={pageContent.companyWorks} />
     <BobMasterPlan t={pageContent.translationComic} />
     <HumanTouch t={pageContent.humanTouch} />

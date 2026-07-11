@@ -128,7 +128,7 @@ export const pageContent = {
         linksLabel: 'Professional links',
         partyPlayer: {
             eyebrow: 'Bob audio lab',
-            title: 'Board-approved party track',
+            title: 'Board approved party track',
             text: 'Press play and the human resource banner enters emergency celebration mode.',
             audioLabel: 'Play Bob party track',
             playLabel: 'Play Bob party track',
