@@ -15,6 +15,8 @@ interface Props {
 }
 
 const { scene } = Astro.props;
+const firstFormula = scene.formula[0]!;
+const secondFormula = scene.formula[1]!;
 ---
 
 <article
@@ -42,10 +44,10 @@ const { scene } = Astro.props;
             <div class="master-plan-equation">
                 <span class="master-plan-equation-term">
                     <img
-                        src={scene.formula[0].asset.src}
-                        width={scene.formula[0].asset.width}
-                        height={scene.formula[0].asset.height}
-                        alt={scene.formula[0].label}
+                        src={firstFormula.asset.src}
+                        width={firstFormula.asset.width}
+                        height={firstFormula.asset.height}
+                        alt={firstFormula.label}
                         loading="lazy"
                     />
                 </span>
@@ -57,10 +59,10 @@ const { scene } = Astro.props;
                 </span>
                 <span class="master-plan-equation-term">
                     <img
-                        src={scene.formula[1].asset.src}
-                        width={scene.formula[1].asset.width}
-                        height={scene.formula[1].asset.height}
-                        alt={scene.formula[1].label}
+                        src={secondFormula.asset.src}
+                        width={secondFormula.asset.width}
+                        height={secondFormula.asset.height}
+                        alt={secondFormula.label}
                         loading="lazy"
                     />
                 </span>

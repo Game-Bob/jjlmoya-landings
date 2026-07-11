@@ -20,9 +20,11 @@
 
 .support-transition-link {
     display: inline-flex;
+    gap: 0.45rem;
     min-height: 2.8rem;
     align-items: center;
     margin-top: 1.8rem;
+    border: 0;
     border-radius: 999px;
     padding: 0.6rem 1.6rem;
     background: var(--team-pink);
@@ -37,10 +39,27 @@
         background-color 0.2s ease;
 }
 
+.support-transition-link small {
+    font-size: 0.72rem;
+    font-weight: var(--font-weight-bold, 800);
+    letter-spacing: 0.02em;
+    opacity: 0.74;
+    text-transform: uppercase;
+}
+
 .support-transition-link:hover {
     background: color-mix(in srgb, var(--team-pink) 85%, #fff);
     box-shadow: 0 12px 32px color-mix(in srgb, var(--team-pink) 50%, transparent);
     transform: translateY(-2px);
+}
+
+.support-transition-link.is-disabled,
+.support-transition-link.is-disabled:hover {
+    background: color-mix(in srgb, var(--team-pink) 42%, var(--team-surface-strong));
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.78;
+    transform: none;
 }
 
 .support-transition-visual {

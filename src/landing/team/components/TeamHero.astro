@@ -5,6 +5,8 @@ import "../styles/TeamHero.css";
 interface Props {
     t: {
         kicker: string;
+        titlePrefix: string;
+        titleAccent: string;
         lead: string;
         stageLabel: string;
         sceneAlt: string;
@@ -22,7 +24,7 @@ const { t } = Astro.props;
                 {t.kicker}
             </div>
             <h1 class="team-hero-title" id="team-hero-title">
-                <span>Game</span><span class="team-hero-title-accent">Bob</span>
+                <span>{t.titlePrefix}</span><span class="team-hero-title-accent">{t.titleAccent}</span>
             </h1>
             <p class="team-hero-lead">{t.lead}</p>
         </div>

@@ -7,7 +7,7 @@ interface Props {
         title: string;
         text: string;
         members: {
-            bob: { role: string; bio: string; tag: string };
+            bob: { name: string; role: string; bio: string; tag: string };
             c2: { name: string; role: string; bio: string; tag: string };
             c3: { name: string; role: string; bio: string; tag: string };
             c4: { name: string; role: string; bio: string; tag: string };
@@ -21,7 +21,7 @@ const { t } = Astro.props;
 
 const members = [
     {
-        name: 'Bob',
+        name: t.members.bob.name,
         role: t.members.bob.role,
         bio: t.members.bob.bio,
         tag: t.members.bob.tag,

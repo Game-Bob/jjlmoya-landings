@@ -6,9 +6,9 @@ interface Props {
         eyebrow: string;
         title: string;
         scenes: {
-            strategic: { title: string; setting: string; speech: string[] };
-            qa: { title: string; setting: string; speech: string[] };
-            implementation: { title: string; setting: string; speech: string[] };
+            strategic: { title: string; setting: string; speech: string[]; propLabel: string };
+            qa: { title: string; setting: string; speech: string[]; propLabel: string };
+            implementation: { title: string; setting: string; speech: string[]; propLabel: string };
         };
     };
 }
@@ -20,18 +20,21 @@ const scenes = [
         title: t.scenes.strategic.title,
         setting: t.scenes.strategic.setting,
         speech: t.scenes.strategic.speech,
+        propLabel: t.scenes.strategic.propLabel,
         prop: 'map',
     },
     {
         title: t.scenes.qa.title,
         setting: t.scenes.qa.setting,
         speech: t.scenes.qa.speech,
+        propLabel: t.scenes.qa.propLabel,
         prop: 'papers',
     },
     {
         title: t.scenes.implementation.title,
         setting: t.scenes.implementation.setting,
         speech: t.scenes.implementation.speech,
+        propLabel: t.scenes.implementation.propLabel,
         prop: 'keyboard',
     },
 ];
@@ -48,7 +51,7 @@ const scenes = [
                         <div class="team-comic-art" aria-hidden="true">
                             <span class="team-comic-cat"></span>
                             <span class="team-comic-human"></span>
-                            <span class="team-comic-prop">{scene.prop}</span>
+                            <span class="team-comic-prop">{scene.propLabel}</span>
                         </div>
                         <div class="team-comic-content">
                             <h3>{scene.title}</h3>

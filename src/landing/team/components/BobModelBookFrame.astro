@@ -1,0 +1,73 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    pose: {
+        image: { src: string; width: number; height: number };
+        variant: string;
+        locked?: boolean;
+    };
+    index: number;
+    unlockedAlt: string;
+    lockedAlt: string;
+    openLabel: string;
+}
+
+const { pose, index, unlockedAlt, lockedAlt, openLabel } = Astro.props;
+const loading = index < 2 ? 'eager' : 'lazy';
+---
+
+<figure
+    class:list={[
+        'bob-model-book-frame',
+        `bob-model-book-frame-${pose.variant}`,
+        pose.locked && 'is-locked',
+    ]}
+>
+    <div class="bob-model-book-stage">
+        {
+            pose.locked ? (
+                <button
+                    class="bob-model-book-open is-premium-locked"
+                    type="button"
+                    aria-label={lockedAlt}
+                    data-bob-model-premium
+                    data-bob-model-src={pose.image.src}
+                    data-bob-model-width={pose.image.width}
+                    data-bob-model-height={pose.image.height}
+                    data-bob-model-alt={lockedAlt}
+                >
+                    <img
+                        src={pose.image.src}
+                        width={pose.image.width}
+                        height={pose.image.height}
+                        alt={lockedAlt}
+                        loading={loading}
+                    />
+                    <span class="bob-model-book-lock" aria-hidden="true">
+                        <Icon name="mdi:lock" />
+                    </span>
+                </button>
+            ) : (
+                <button
+                    class="bob-model-book-open"
+                    type="button"
+                    aria-label={openLabel}
+                    data-bob-model-open
+                    data-bob-model-src={pose.image.src}
+                    data-bob-model-width={pose.image.width}
+                    data-bob-model-height={pose.image.height}
+                    data-bob-model-alt={unlockedAlt}
+                >
+                    <img
+                        src={pose.image.src}
+                        width={pose.image.width}
+                        height={pose.image.height}
+                        alt={unlockedAlt}
+                        loading={loading}
+                    />
+                </button>
+            )
+        }
+    </div>
+</figure>

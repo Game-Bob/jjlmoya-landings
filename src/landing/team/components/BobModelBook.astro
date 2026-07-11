@@ -1,5 +1,7 @@
 ---
+import { Icon } from 'astro-icon/components';
 import '../styles/BobModelBook.css';
+import BobModelBookFrame from './BobModelBookFrame.astro';
 import coverPose from '../assets/bob-model-book/bob-pose-cover.webp';
 import attitudePose from '../assets/bob-model-book/bob-pose-attitude.webp';
 import expensivePose from '../assets/bob-model-book/bob-pose-expensive.webp';
@@ -9,6 +11,29 @@ import pose06 from '../assets/bob-model-book/bob-pose-06.webp';
 import pose07Locked from '../assets/bob-model-book/bob-pose-07-locked.webp';
 import pose08Locked from '../assets/bob-model-book/bob-pose-08-locked.webp';
 import pose09Locked from '../assets/bob-model-book/bob-pose-09-locked.webp';
+
+interface Props {
+    t: {
+        eyebrow: string;
+        logoPrefix: string;
+        logoName: string;
+        text: string;
+        galleryLabel: string;
+        unlockedAlt: string;
+        lockedAlt: string;
+        openLabel: string;
+        closeLabel: string;
+        premiumTitle: string;
+        premiumText: string;
+        buyLabel: string;
+        trialLabel: string;
+        subscriptionLabel: string;
+        subscriptionPrefix: string;
+        expiredLabel: string;
+    };
+}
+
+const { t } = Astro.props;
 
 const poses = [
     { image: coverPose, variant: 'large' },
@@ -26,40 +51,204 @@ const poses = [
 <section class="team-section bob-model-book" aria-labelledby="bob-model-book-title">
     <div class="team-landing-inner">
         <div class="bob-model-book-header">
-            <p class="team-section-eyebrow">Plan de emergencia</p>
+            <p class="team-section-eyebrow">{t.eyebrow}</p>
             <h2 class="bob-model-book-logo" id="bob-model-book-title">
                 <span class="bob-model-book-logo-mark" aria-hidden="true"></span>
-                <span>Only</span><strong>Bob</strong>
+                <span>{t.logoPrefix}</span><strong>{t.logoName}</strong>
             </h2>
             <p class="team-section-text">
-                Bob me obligó a crear esta sección porque, si todo lo demás falla, considera que su presencia puede ser
-                una alternativa económicamente viable. Yo solo he implementado la orden.
+                {t.text}
             </p>
         </div>
 
-        <div class="bob-model-book-grid" aria-label="Galería editorial de Bob">
+        <div class="bob-model-book-grid" aria-label={t.galleryLabel}>
             {
                 poses.map((pose, index) => (
-                    <figure
-                        class:list={[
-                            'bob-model-book-frame',
-                            `bob-model-book-frame-${pose.variant}`,
-                            pose.locked && 'is-locked',
-                        ]}
-                    >
-                        <div class="bob-model-book-stage">
-                            <img
-                                src={pose.image.src}
-                                width={pose.image.width}
-                                height={pose.image.height}
-                                alt={pose.locked ? 'Gesto bloqueado de Bob' : 'Bob en gesto editorial'}
-                                loading={index < 2 ? 'eager' : 'lazy'}
-                            />
-                            {pose.locked && <span class="bob-model-book-lock" aria-hidden="true"></span>}
-                        </div>
-                    </figure>
+                    <BobModelBookFrame
+                        pose={pose}
+                        index={index}
+                        unlockedAlt={t.unlockedAlt}
+                        lockedAlt={t.lockedAlt}
+                        openLabel={t.openLabel}
+                    />
                 ))
             }
         </div>
     </div>
+
+    <dialog class="bob-model-book-lightbox" data-bob-model-lightbox aria-label={t.galleryLabel}>
+        <div class="bob-model-book-lightbox-frame">
+            <button class="bob-model-book-lightbox-close" type="button" data-bob-model-close aria-label={t.closeLabel}>
+                <Icon name="mdi:close" />
+            </button>
+            <img data-bob-model-lightbox-image src="" alt="" />
+        </div>
+    </dialog>
+
+    <dialog class="bob-model-book-paywall" data-bob-model-paywall aria-labelledby="bob-model-paywall-title">
+        <div class="bob-model-book-paywall-panel">
+            <button class="bob-model-book-lightbox-close" type="button" data-bob-model-paywall-close aria-label={t.closeLabel}>
+                <Icon name="mdi:close" />
+            </button>
+            <h3 id="bob-model-paywall-title">{t.premiumTitle}</h3>
+            <p>{t.premiumText}</p>
+            <button class="bob-model-book-buy" type="button" disabled>
+                <Icon name="mdi:lock" />
+                <span>{t.buyLabel}</span>
+            </button>
+            <button class="bob-model-book-trial" type="button" data-bob-model-trial>
+                {t.trialLabel}
+            </button>
+        </div>
+    </dialog>
+
+    <div
+        class="bob-model-book-subscription"
+        data-bob-model-subscription
+        hidden
+        aria-live="polite"
+        data-label={t.subscriptionLabel}
+        data-prefix={t.subscriptionPrefix}
+        data-expired={t.expiredLabel}
+    >
+        <span data-bob-model-subscription-label>{t.subscriptionLabel}</span>
+        <strong data-bob-model-subscription-time></strong>
+    </div>
 </section>
+
+<script>
+    const trialDurationMs = 24 * 60 * 60 * 1000;
+    const storageKey = 'gamebob-onlybob-trial-expires-at';
+    const lightbox = document.querySelector<HTMLDialogElement>('[data-bob-model-lightbox]');
+    const lightboxImage = document.querySelector<HTMLImageElement>('[data-bob-model-lightbox-image]');
+    const closeButton = document.querySelector<HTMLButtonElement>('[data-bob-model-close]');
+    const paywall = document.querySelector<HTMLDialogElement>('[data-bob-model-paywall]');
+    const paywallCloseButton = document.querySelector<HTMLButtonElement>('[data-bob-model-paywall-close]');
+    const trialButton = document.querySelector<HTMLButtonElement>('[data-bob-model-trial]');
+    const subscription = document.querySelector<HTMLElement>('[data-bob-model-subscription]');
+    const subscriptionTime = document.querySelector<HTMLElement>('[data-bob-model-subscription-time]');
+    let isUnlockingTrial = false;
+
+    const getTrialExpiry = () => Number(localStorage.getItem(storageKey) ?? 0);
+    const isTrialActive = () => getTrialExpiry() > Date.now();
+
+    const openImage = (button: HTMLButtonElement) => {
+        if (!lightbox || !lightboxImage) return;
+
+        lightboxImage.src = button.dataset.bobModelSrc ?? '';
+        lightboxImage.alt = button.dataset.bobModelAlt ?? '';
+        lightboxImage.width = Number(button.dataset.bobModelWidth ?? 0);
+        lightboxImage.height = Number(button.dataset.bobModelHeight ?? 0);
+        lightbox.showModal();
+    };
+
+    const formatTime = (remainingMs: number) => {
+        const totalSeconds = Math.max(0, Math.floor(remainingMs / 1000));
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    const getLockedFrames = () => Array.from(document.querySelectorAll<HTMLElement>('.bob-model-book-frame.is-locked'));
+
+    const setPremiumState = () => {
+        if (isUnlockingTrial) return;
+
+        const active = isTrialActive();
+        getLockedFrames().forEach((frame) => {
+            frame.classList.toggle('is-trial-unlocked', active);
+        });
+        document.querySelectorAll<HTMLButtonElement>('[data-bob-model-premium]').forEach((button) => {
+            button.setAttribute('aria-label', active ? button.dataset.bobModelAlt ?? '' : button.getAttribute('aria-label') ?? '');
+        });
+    };
+
+    const updateSubscription = () => {
+        if (!subscription || !subscriptionTime) return;
+
+        const remaining = getTrialExpiry() - Date.now();
+        if (remaining <= 0) {
+            localStorage.removeItem(storageKey);
+            subscription.hidden = true;
+            setPremiumState();
+            return;
+        }
+
+        subscription.hidden = false;
+        const prefix = subscription.dataset.prefix ?? '';
+        subscriptionTime.textContent = prefix ? `${prefix} ${formatTime(remaining)}` : formatTime(remaining);
+        setPremiumState();
+    };
+
+    const revealTrialAccess = () => {
+        const frames = getLockedFrames();
+        const stepMs = 820;
+        const revealMs = 1500;
+
+        if (frames.length === 0) {
+            updateSubscription();
+            return;
+        }
+
+        isUnlockingTrial = true;
+        frames.forEach((frame, index) => {
+            const delay = index * stepMs;
+            frame.classList.remove('is-trial-unlocked');
+            frame.classList.add('is-unlocking');
+            frame.style.setProperty('--unlock-delay', `${delay}ms`);
+
+            window.setTimeout(() => frame.classList.add('is-trial-unlocked'), delay + revealMs * 0.58);
+            window.setTimeout(() => {
+                frame.classList.remove('is-unlocking');
+                frame.style.removeProperty('--unlock-delay');
+
+                if (index === frames.length - 1) {
+                    isUnlockingTrial = false;
+                    updateSubscription();
+                }
+            }, delay + revealMs);
+        });
+    };
+
+    document.querySelectorAll<HTMLButtonElement>('[data-bob-model-open]').forEach((button) => {
+        button.addEventListener('click', () => openImage(button));
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('[data-bob-model-premium]').forEach((button) => {
+        button.addEventListener('click', () => {
+            if (isTrialActive()) {
+                openImage(button);
+                return;
+            }
+
+            paywall?.showModal();
+        });
+    });
+
+    const closeLightbox = () => {
+        lightbox?.close();
+    };
+
+    closeButton?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+    });
+    paywallCloseButton?.addEventListener('click', () => paywall?.close());
+    paywall?.addEventListener('click', (event) => {
+        if (event.target === paywall) paywall.close();
+    });
+    trialButton?.addEventListener('click', () => {
+        localStorage.setItem(storageKey, String(Date.now() + trialDurationMs));
+        paywall?.close();
+        if (subscription && subscriptionTime) {
+            subscription.hidden = false;
+            subscriptionTime.textContent = formatTime(trialDurationMs);
+        }
+        revealTrialAccess();
+    });
+
+    updateSubscription();
+    window.setInterval(updateSubscription, 1000);
+</script>

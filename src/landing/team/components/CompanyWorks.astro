@@ -15,12 +15,12 @@ interface Props {
         secretDossier: string;
         closeDossier: string;
         members: {
-            bob: { role: string; status: string; dossier: string };
-            terra: { role: string; status: string; dossier: string };
-            ambar: { role: string; status: string; dossier: string };
-            ambarChiquilla: { role: string; status: string; dossier: string };
-            drac: { role: string; status: string; dossier: string };
-            jj: { role: string; status: string; dossier: string };
+            bob: { name: string; role: string; status: string; dossier: string };
+            terra: { name: string; role: string; status: string; dossier: string };
+            ambar: { name: string; role: string; status: string; dossier: string };
+            ambarChiquilla: { name: string; role: string; status: string; dossier: string };
+            drac: { name: string; role: string; status: string; dossier: string };
+            jj: { name: string; role: string; status: string; dossier: string };
         };
     };
 }
@@ -30,9 +30,9 @@ const { t } = Astro.props;
 const members = [
     {
         id: 'bob',
-        name: 'Bob',
-        role: 'CEO: Gata Jefa',
-        status: 'Nivel de autoridad: Incuestionable. Comedora profesional',
+        name: t.members.bob.name,
+        role: t.members.bob.role,
+        status: t.members.bob.status,
         dossier: t.members.bob.dossier,
         hierarchy: 'chief',
         mark: 'B',
@@ -40,8 +40,8 @@ const members = [
     },
     {
         id: 'terra',
-        name: 'Terra',
-        role: 'La Matriarca',
+        name: t.members.terra.name,
+        role: t.members.terra.role,
         status: t.members.terra.status,
         dossier: t.members.terra.dossier,
         hierarchy: 'orbit orbit-terra',
@@ -50,7 +50,7 @@ const members = [
     },
     {
         id: 'ambar',
-        name: 'Ámbar',
+        name: t.members.ambar.name,
         role: t.members.ambar.role,
         status: t.members.ambar.status,
         dossier: t.members.ambar.dossier,
@@ -60,7 +60,7 @@ const members = [
     },
     {
         id: 'ambar-chiquilla',
-        name: 'Ámbar Chiquilla',
+        name: t.members.ambarChiquilla.name,
         role: t.members.ambarChiquilla.role,
         status: t.members.ambarChiquilla.status,
         dossier: t.members.ambarChiquilla.dossier,
@@ -70,7 +70,7 @@ const members = [
     },
     {
         id: 'drac',
-        name: 'Drac',
+        name: t.members.drac.name,
         role: t.members.drac.role,
         status: t.members.drac.status,
         dossier: t.members.drac.dossier,
@@ -80,7 +80,7 @@ const members = [
     },
     {
         id: 'jj',
-        name: 'JJ',
+        name: t.members.jj.name,
         role: t.members.jj.role,
         status: t.members.jj.status,
         dossier: t.members.jj.dossier,

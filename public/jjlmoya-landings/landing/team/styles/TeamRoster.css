@@ -1,0 +1,75 @@
+.team-roster-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.team-member-card {
+    position: relative;
+    min-height: 230px;
+    overflow: hidden;
+    border: 1px solid var(--team-border);
+    border-radius: 18px;
+    padding: 1.1rem;
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.team-member-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--team-pink) 46%, var(--team-border));
+}
+
+.team-member-card-avatar {
+    display: grid;
+    width: 4rem;
+    height: 4rem;
+    place-items: center;
+    border-radius: 18px;
+    background: var(--member-color);
+    color: var(--team-deep);
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold, 800);
+}
+
+.team-member-card-name {
+    margin: 1.3rem 0 0;
+    font-size: 1.45rem;
+}
+
+.team-member-card-role {
+    margin: 0.35rem 0 0;
+    color: var(--team-mint);
+    font-weight: var(--font-weight-bold, 800);
+}
+
+.team-member-card-bio {
+    margin: 1rem 0 0;
+    color: var(--team-muted);
+    line-height: 1.65;
+}
+
+.team-member-card-tag {
+    display: inline-flex;
+    margin-top: 1rem;
+    border: 1px solid var(--team-border);
+    border-radius: 999px;
+    padding: 0.45rem 0.68rem;
+    color: var(--team-muted);
+    font-size: 0.82rem;
+    font-weight: var(--font-weight-bold, 800);
+}
+
+@media (max-width: 920px) {
+    .team-roster-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .team-roster-grid {
+        grid-template-columns: 1fr;
+    }
+}

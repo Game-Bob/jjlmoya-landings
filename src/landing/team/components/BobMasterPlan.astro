@@ -22,6 +22,14 @@ interface Props {
         languagesLabel: string;
         text: string;
         quote: string;
+        closing: string;
+        scenes: {
+            label: string;
+            title: string;
+            text: string;
+            assetAlt: string;
+            formula: string[];
+        }[];
     };
 }
 
@@ -30,54 +38,54 @@ const { t } = Astro.props;
 const scenes = [
     {
         number: "01",
-        label: "Mi gran error",
-        title: "Bob descubrió el sistema.",
-        text: "Un día cometí un error irreparable: le dejé ver cómo conseguía su comida. Ese día Bob lo empezó a entender todo.",
+        label: t.scenes[0]!.label,
+        title: t.scenes[0]!.title,
+        text: t.scenes[0]!.text,
         visual: "money",
         asset: scene1,
-        assetAlt: "",
+        assetAlt: t.scenes[0]!.assetAlt,
         formula: [
-            { label: "Dinero", asset: formulaMoney },
-            { label: "Comida", asset: formulaFood },
+            { label: t.scenes[0]!.formula[0]!, asset: formulaMoney },
+            { label: t.scenes[0]!.formula[1]!, asset: formulaFood },
         ],
     },
     {
         number: "02",
-        label: "El sueño",
-        title: "El estómago marcó el rumbo.",
-        text: "Bob soñó día y noche sin parar y llegó a la conclusión de que si le gustaría tener muchísima más comida.",
+        label: t.scenes[1]!.label,
+        title: t.scenes[1]!.title,
+        text: t.scenes[1]!.text,
         visual: "bowl",
         asset: scene2,
-        assetAlt: "",
+        assetAlt: t.scenes[1]!.assetAlt,
         formula: [
-            { label: "Más dinero", asset: formulaMoreMoney },
-            { label: "Más comida", asset: formulaMoreFood },
+            { label: t.scenes[1]!.formula[0]!, asset: formulaMoreMoney },
+            { label: t.scenes[1]!.formula[1]!, asset: formulaMoreFood },
         ],
     },
     {
         number: "03",
-        label: "El plan maestro",
-        title: "Bob pensó en ingresos.",
-        text: "Bob no se conformó con entender el sistema. Empezó a preguntarse cómo producir dinero de forma recurrente, preferiblemente sin mover una pata.",
+        label: t.scenes[2]!.label,
+        title: t.scenes[2]!.title,
+        text: t.scenes[2]!.text,
         visual: "map",
         asset: scene3,
-        assetAlt: "",
+        assetAlt: t.scenes[2]!.assetAlt,
         formula: [
-            { label: "Herramientas", asset: formulaTools },
-            { label: "Dinero", asset: formulaMoney },
+            { label: t.scenes[2]!.formula[0]!, asset: formulaTools },
+            { label: t.scenes[2]!.formula[1]!, asset: formulaMoney },
         ],
     },
     {
         number: "04",
-        label: "Nace GameBob",
-        title: "El humano recibió la orden.",
-        text: "La orden fue sencilla: el humano construiría herramientas, juegos y páginas. Bob supervisaría la estrategia. La comida financiaría la visión.",
+        label: t.scenes[3]!.label,
+        title: t.scenes[3]!.title,
+        text: t.scenes[3]!.text,
         visual: "orders",
         asset: scene4,
-        assetAlt: "",
+        assetAlt: t.scenes[3]!.assetAlt,
         formula: [
-            { label: "Más proyectos", asset: formulaProjects },
-            { label: "Más comida", asset: formulaMoreFood },
+            { label: t.scenes[3]!.formula[0]!, asset: formulaProjects },
+            { label: t.scenes[3]!.formula[1]!, asset: formulaMoreFood },
         ],
     },
 ];
@@ -89,13 +97,9 @@ const scenes = [
     <div class="team-landing-inner">
         <div class="master-plan-header">
             <p class="team-section-eyebrow">{t.eyebrow}</p>
-            <h2 class="team-section-title" id="master-plan-title">
-                Cómo empezó todo
-            </h2>
+            <h2 class="team-section-title" id="master-plan-title">{t.title}</h2>
             <p class="team-section-text">
-                El Plan Maestro de Bob para apoderarse de tu dinero empezó con
-                una revelación sencilla: el dinero podía convertirse en comida.
-                Desde entonces, nada volvió a ser operacionalmente seguro.
+                {t.text}
             </p>
         </div>
 
@@ -109,7 +113,7 @@ const scenes = [
 
         <p class="master-plan-punchline">
             <span>{t.quote}</span>
-            <strong>El plan era simple. El humano sigue recuperándose.</strong>
+            <strong>{t.closing}</strong>
         </p>
     </div>
 </section>
