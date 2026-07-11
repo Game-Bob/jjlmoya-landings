@@ -1,4 +1,5 @@
-import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -6,41 +7,48 @@ const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const consumerRoot = packageRoot.includes("node_modules")
     ? join(packageRoot, "../../..")
     : packageRoot;
-const publicRoot = join(consumerRoot, "public", "landings", "team");
-const styleFiles = [
-    "team-landing.css",
-    "TeamHero.css",
-    "CompanyWorks.css",
-    "BobMasterPlan.css",
-    "TeamComicScenes.css",
-    "HumanTouch.css",
-    "ProductManifesto.css",
-    "BobModelBook.css",
-    "SupportTransition.css",
-    "MemoryWall.css",
-    "TeamRoster.css",
-    "BehindJoke.css",
-];
+const publicRoot = join(consumerRoot, "public", "landings");
+const srcLandingRoot = join(packageRoot, "src", "landing");
 
-const copies = [
-    ["src/landing/team/assets", "assets"],
-];
+const landings = await readdir(srcLandingRoot);
 
-await mkdir(publicRoot, { recursive: true });
+for (const name of landings) {
+    const landingPublicDir = join(publicRoot, name);
+    await mkdir(landingPublicDir, { recursive: true });
 
-for (const [from, to] of copies) {
-    await cp(join(packageRoot, from), join(publicRoot, to), {
-        recursive: true,
-        force: true,
-        errorOnExist: false,
-    });
+    const stylesRoot = join(srcLandingRoot, name, "styles");
+    let hasStyles = false;
+    try {
+        const styleFiles = (await readdir(stylesRoot)).filter((f) =>
+            f.endsWith(".css"),
+        );
+        if (styleFiles.length > 0) {
+            const cssBundle = await Promise.all(
+                styleFiles.map(async (file) => {
+                    const content = await readFile(join(stylesRoot, file), "utf8");
+                    return `/* ${file} */\n${content.trim()}\n`;
+                }),
+            );
+            await writeFile(
+                join(landingPublicDir, `${name}.css`),
+                `${cssBundle.join("\n")}\n`,
+            );
+            hasStyles = true;
+        }
+    } catch {
+        // no styles dir
+    }
+
+    if (!hasStyles) {
+        console.log(`[landings] No styles found for "${name}"`);
+    }
+
+    const assetsDir = join(srcLandingRoot, name, "assets");
+    if (existsSync(assetsDir)) {
+        await cp(assetsDir, join(landingPublicDir, "assets"), {
+            recursive: true,
+            force: true,
+            errorOnExist: false,
+        });
+    }
 }
-
-const cssBundle = await Promise.all(
-    styleFiles.map(async (file) => {
-        const content = await readFile(join(packageRoot, "src", "landing", "team", "styles", file), "utf8");
-        return `/* ${file} */\n${content.trim()}\n`;
-    }),
-);
-
-await writeFile(join(publicRoot, "team.css"), `${cssBundle.join("\n")}\n`);
