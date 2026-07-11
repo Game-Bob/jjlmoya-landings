@@ -2,7 +2,7 @@ import type { LandingEntry } from '../../types';
 
 const assetsBasePath = '/landings/team/assets';
 const cssPath = '/landings/team/team.css';
-const openGraphImage = `${assetsBasePath}/gamebob-team-hero.webp`;
+const openGraphImage = `${assetsBasePath}/team-og.webp`;
 
 export const teamEntry: LandingEntry = {
     id: 'team',

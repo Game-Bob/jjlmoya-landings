@@ -25,18 +25,27 @@ const { t } = Astro.props;
             <slot name="title" />
             <p class="team-hero-lead">{t.lead}</p>
         </div>
-        <div
-            class="team-hero-stage"
-            aria-label={t.stageLabel}
-        >
-            <img
-                class="team-hero-scene"
-                src={heroSceneUrl.src}
-                width={heroSceneUrl.width}
-                height={heroSceneUrl.height}
-                alt={t.sceneAlt}
-                loading="eager"
-            />
+        <div class="team-hero-stage">
+            <div class="team-hero-window" aria-label={t.stageLabel}>
+                <div class="team-hero-window-header">
+                    <div class="team-hero-window-dots">
+                        <span class="window-dot red"></span>
+                        <span class="window-dot yellow"></span>
+                        <span class="window-dot green"></span>
+                    </div>
+                    <span class="team-hero-window-title">gamebob_strategy.exe</span>
+                </div>
+                <div class="team-hero-window-content">
+                    <img
+                        class="team-hero-scene"
+                        src={heroSceneUrl.src}
+                        width={heroSceneUrl.width}
+                        height={heroSceneUrl.height}
+                        alt={t.sceneAlt}
+                        loading="eager"
+                    />
+                </div>
+            </div>
         </div>
     </div>
 </section>
