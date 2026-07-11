@@ -56,9 +56,15 @@ export interface Props {
 
 const { def, locale, card, localeUrls, nav } = Astro.props;
 const { default: LandingComponent } = (await def.LandingComponent()) as { default: AstroComponentFactory };
+const cssPath = def.entry.publicAssets?.cssPath;
+
+const allStyles = import.meta.glob('../../landing/**/*.css');
+const activeStyles = Object.keys(allStyles).filter((p) => p.includes(`/landing/${def.entry.id}/`));
+await Promise.all(activeStyles.map((p) => allStyles[p]()));
 ---
 
 <PreviewLayout title={card.title} currentLocale={locale} localeUrls={localeUrls} hasSidebar={true}>
+    {cssPath && <link slot="head" rel="stylesheet" href={cssPath} />}
     <PreviewNavSidebar slot="sidebar" categoryTitle="Landings" apps={nav} />
     <LandingComponent locale={locale} />
 </PreviewLayout>

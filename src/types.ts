@@ -13,8 +13,22 @@ export interface LandingCardContent {
     description: string;
 }
 
+export interface LandingPublicAssets {
+    basePath: string;
+    cssPath: string;
+}
+
+export interface LandingSeoMetadata {
+    title: string;
+    description: string;
+    image: string;
+    openGraphImage: string;
+}
+
 export interface LandingEntry {
     id: string;
+    publicAssets?: LandingPublicAssets;
+    seo?: LandingSeoMetadata;
     i18n: LocaleMap<LandingCardContent>;
 }
 

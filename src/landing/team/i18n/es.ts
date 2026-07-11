@@ -1,7 +1,7 @@
 import type { LandingCardContent } from '../../../types';
 
 export const cardContent: LandingCardContent = {
-    slug: 'team',
+    slug: 'equipo',
     title: 'Equipo GameBob',
     subtitle: 'Dirigido por gatos. Creado por un humano.',
     description: 'Una cálida y pequeña página sobre Bob, una junta directiva felina, un desarrollador en Mallorca y los compañeros recordados en el camino.'

@@ -6,7 +6,9 @@
     "types": "./src/index.ts",
     "exports": {
         ".": "./src/index.ts",
-        "./entries": "./src/entries.ts"
+        "./entries": "./src/entries.ts",
+        "./team": "./src/landing/team/landing.astro",
+        "./team/entry": "./src/landing/team/entry.ts"
     },
     "files": [
         "src",
