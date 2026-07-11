@@ -4,6 +4,17 @@ import tinderProfile from "../assets/jjlmoya/tinder-profile.webp";
 import tinderProfileWinked from "../assets/jjlmoya/tinder-profile-winked.webp";
 import bobPointingSprite from "../assets/bob-model-book/bob-pointing.webp";
 
+interface Props {
+    t: {
+        textBefore: string;
+        wordWithRagebait: string;
+        textAfter: string;
+        ragebaitExplanation: string;
+    };
+}
+
+const { t } = Astro.props;
+
 const stats = [
     ["Base", "Mallorca, España"],
     ["Rol", "Developer"],
@@ -34,11 +45,12 @@ const chips = [
                     El Humano
                 </h2>
                 <p class="team-section-text">
-                    jjlmoya es un developer frontend con más de una vida gatuna
-                    de experiencia. Construye apps, webs y automatizaciones con
-                    mentalidad de artesano: convertir ideas en productos útiles,
-                    rápidos y fáciles de entender.
+                    {t.textBefore}<span class="human-touch-ragebait-inline">{t.wordWithRagebait}</span>{t.textAfter}
                 </p>
+
+                <div class="human-touch-ragebait-box">
+                    <p class="human-touch-ragebait-explanation">{t.ragebaitExplanation}</p>
+                </div>
 
                 <div
                     class="human-touch-chipstorm"
@@ -80,7 +92,7 @@ const chips = [
                     </div>
                     <div class="human-touch-id">
                         <p>jjlmoya</p>
-                        <strong>Developer frontend</strong>
+                        <strong>Frontend Developer</strong>
                         <span
                             >Transforma curiosidades, problemas y detalles
                             cotidianos en herramientas, experiencias

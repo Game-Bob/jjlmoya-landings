@@ -80,6 +80,12 @@ export const pageContent = {
         text: 'Behind GameBob there is one solo developer designing, building, translating and maintaining everything from Mallorca. The goal is simple: make tools that are useful, visual, fast and pleasant to use.',
         island: 'Mallorca'
     },
+    humanTouch: {
+        textBefore: 'Bob decided that empathy had to be an essential part of this page because "humans connect with humans". So she ordered this section, and knowing we suffer from attention deficits, demanded it be filled with animations and ',
+        wordWithRagebait: 'vright lights',
+        textAfter: '.',
+        ragebaitExplanation: 'Everyone relax: the "v" in vright is there on purpose. Feline board analytics guarantee that correcting typos increases visits by 400%.'
+    },
     translationComic: {
         eyebrow: 'The translation comic',
         title: 'Bob saw the world map and made a business decision.',
@@ -88,7 +94,7 @@ export const pageContent = {
         humanAssignment: 'The human understands the assignment.',
         languagesLabel: 'Supported language placeholders',
         text: 'GameBob is translated with AI assistance. I do not speak every language on Earth. I prefer making the tools available worldwide, even if some translations are imperfect, rather than keeping everything locked in one language.',
-        quote: 'More languages. More humans. More food.'
+        quote: 'More work. More money. More food.'
     },
     productManifesto: {
         eyebrow: 'Product philosophy',

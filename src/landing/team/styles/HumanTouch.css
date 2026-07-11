@@ -1,4 +1,6 @@
 .human-touch {
+    --human-touch-inverse: #fff;
+
     position: relative;
     overflow: hidden;
 }
@@ -11,22 +13,26 @@
 }
 
 .human-touch::before {
-    inset: 8% -10%;
+    inset: -15%;
     background:
-        radial-gradient(circle at 14% 20%, color-mix(in srgb, var(--team-pink) 34%, transparent), transparent 18%),
-        radial-gradient(circle at 86% 28%, color-mix(in srgb, var(--team-mint) 32%, transparent), transparent 18%),
-        radial-gradient(circle at 54% 88%, color-mix(in srgb, var(--team-gold) 28%, transparent), transparent 20%);
-    filter: blur(6px);
-    opacity: 0.75;
-    animation: human-touch-bg 5s linear infinite;
+        radial-gradient(circle at 15% 25%, var(--team-pink) 0%, transparent 35%),
+        radial-gradient(circle at 85% 25%, var(--team-mint) 0%, transparent 35%),
+        radial-gradient(circle at 50% 85%, var(--team-gold) 0%, transparent 40%);
+    filter: blur(55px);
+    opacity: 0.8;
+    animation:
+        human-touch-bg-move 8s linear infinite,
+        human-touch-bg-pulse 0.45s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
 }
 
 .human-touch::after {
-    inset: 0;
+    inset: -10%;
     background:
-        linear-gradient(115deg, transparent 0 42%, rgba(255, 255, 255, 0.08) 43% 45%, transparent 46%),
-        linear-gradient(245deg, transparent 0 54%, rgba(45, 212, 191, 0.1) 55% 57%, transparent 58%);
-    animation: human-touch-scan 2.2s ease-in-out infinite;
+        linear-gradient(105deg, transparent 0 44%, var(--team-mint) 45% 46%, transparent 47%),
+        linear-gradient(225deg, transparent 0 53%, var(--team-pink) 54% 55%, transparent 56%);
+    opacity: 0.25;
+    pointer-events: none;
+    animation: human-touch-lasers 3s ease-in-out infinite alternate;
 }
 
 .human-touch-shell {
@@ -40,6 +46,14 @@
 
 .human-touch-copy {
     position: relative;
+    background: color-mix(in srgb, var(--team-surface) 65%, transparent);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--team-border) 40%, transparent);
+    border-radius: 24px;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    box-shadow: 
+        0 20px 45px rgba(0, 0, 0, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
 }
 
 .human-touch-copy .team-section-title {
@@ -92,7 +106,9 @@
     box-shadow:
         0 30px 90px rgba(0, 0, 0, 0.18),
         0 0 44px color-mix(in srgb, var(--team-mint) 20%, transparent);
-    animation: human-touch-board 2.4s ease-in-out infinite;
+    animation:
+        human-touch-board 2.4s ease-in-out infinite,
+        human-touch-board-neon 8s linear infinite;
 }
 
 .human-touch-alert {
@@ -100,7 +116,7 @@
     border-radius: 999px;
     padding: 0.48rem 0.7rem;
     background: var(--team-pink);
-    color: #fff;
+    color: var(--human-touch-inverse);
     font-size: 0.72rem;
     font-weight: var(--font-weight-bold, 800);
     letter-spacing: 0.08em;
@@ -166,7 +182,7 @@
     border-radius: 12px;
     padding: 0.55rem 0.65rem;
     background: rgba(0, 0, 0, 0.54);
-    color: #fff;
+    color: var(--human-touch-inverse);
     font-size: 0.76rem;
     font-weight: var(--font-weight-bold, 800);
     line-height: 1.25;
@@ -395,12 +411,129 @@
     }
 }
 
+@keyframes human-touch-bg-move {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+        filter: blur(55px) hue-rotate(0deg);
+    }
+
+    50% {
+        transform: translate3d(2rem, -2rem, 0) rotate(180deg);
+        filter: blur(45px) hue-rotate(180deg);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0) rotate(360deg);
+        filter: blur(55px) hue-rotate(360deg);
+    }
+}
+
+@keyframes human-touch-bg-pulse {
+    0%, 100% {
+        opacity: 0.5;
+        filter: brightness(0.8) blur(55px);
+    }
+
+    50% {
+        opacity: 0.95;
+        filter: brightness(1.35) blur(45px);
+    }
+}
+
+@keyframes human-touch-lasers {
+    0% {
+        transform: translateY(-15%) scaleY(1) rotate(-5deg);
+        filter: hue-rotate(0deg) brightness(1);
+    }
+
+    50% {
+        transform: translateY(15%) scaleY(1.2) rotate(5deg);
+        filter: hue-rotate(120deg) brightness(1.8);
+    }
+
+    100% {
+        transform: translateY(-15%) scaleY(1) rotate(-5deg);
+        filter: hue-rotate(240deg) brightness(1.2);
+    }
+}
+
+@keyframes human-touch-board-neon {
+    0%, 100% {
+        border-color: color-mix(in srgb, var(--team-mint) 60%, var(--team-border));
+        box-shadow:
+            0 30px 90px rgba(0, 0, 0, 0.18),
+            0 0 35px color-mix(in srgb, var(--team-mint) 25%, transparent);
+    }
+
+    33% {
+        border-color: color-mix(in srgb, var(--team-pink) 60%, var(--team-border));
+        box-shadow:
+            0 30px 90px rgba(0, 0, 0, 0.18),
+            0 0 35px color-mix(in srgb, var(--team-pink) 25%, transparent);
+    }
+
+    66% {
+        border-color: color-mix(in srgb, var(--team-gold) 60%, var(--team-border));
+        box-shadow:
+            0 30px 90px rgba(0, 0, 0, 0.18),
+            0 0 35px color-mix(in srgb, var(--team-gold) 25%, transparent);
+    }
+}
+
+.human-touch-ragebait-inline {
+    display: inline-block;
+    border: 1px solid var(--team-pink);
+    border-radius: 4px;
+    padding: 0 0.35rem;
+    color: var(--team-pink);
+    font-weight: var(--font-weight-bold, 800);
+    line-height: 1.2;
+}
+
+.human-touch-ragebait-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    border: 1px dashed color-mix(in srgb, var(--team-pink) 45%, transparent);
+    border-radius: 12px;
+    padding: 0.85rem 1.1rem;
+    background: color-mix(in srgb, var(--team-pink) 6%, transparent);
+}
+
+.human-touch-ragebait-badge {
+    flex-shrink: 0;
+    border: 1px solid var(--team-pink);
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    color: var(--team-pink);
+    font-size: 0.78rem;
+    font-weight: var(--font-weight-bold, 800);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.human-touch-ragebait-explanation {
+    margin: 0;
+    color: var(--team-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+    .human-touch-ragebait-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .human-touch,
     .human-touch *,
     .human-touch::before,
     .human-touch::after {
-        animation: none !important;
+        animation-name: none;
     }
 }
 

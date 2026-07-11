@@ -1,4 +1,7 @@
 .bob-model-book {
+    --bob-blue: #00aff0;
+    --bob-blue-dark: #008ccf;
+
     position: relative;
     padding-bottom: clamp(5rem, 9vw, 8rem);
 }
@@ -12,7 +15,7 @@
     align-items: center;
     gap: 0.04em;
     margin: 0;
-    color: #00aff0;
+    color: var(--bob-blue);
     font-size: clamp(3.4rem, 10vw, 7.5rem);
     font-weight: var(--font-weight-bold, 800);
     letter-spacing: -0.035em;
@@ -25,7 +28,7 @@
     width: 0.62em;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: #00aff0;
+    background: var(--bob-blue);
     transform: translateY(0.02em);
 }
 
@@ -48,7 +51,7 @@
     width: 0.44em;
     height: 0.24em;
     border-radius: 999px 999px 999px 0;
-    background: #008ccf;
+    background: var(--bob-blue-dark);
     content: "";
     transform: rotate(-26deg);
 }
@@ -58,7 +61,7 @@
 }
 
 .bob-model-book-logo strong {
-    color: #008ccf;
+    color: var(--bob-blue-dark);
     font-style: normal;
 }
 
@@ -88,10 +91,6 @@
     grid-column: 1 / span 6;
 }
 
-.bob-model-book-frame-portrait {
-    grid-column: span 2;
-}
-
 .bob-model-book-frame-landscape {
     grid-column: 1 / -1;
 }
@@ -106,7 +105,7 @@
     background:
         radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.54), transparent 21%),
         radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--team-mint) 18%, transparent), transparent 48%),
-        linear-gradient(180deg, color-mix(in srgb, var(--team-surface-strong) 70%, white), var(--team-surface));
+        linear-gradient(180deg, color-mix(in srgb, var(--team-surface-strong) 70%, #fff), var(--team-surface));
     box-shadow:
         inset 0 0 0 1px var(--team-border),
         0 22px 80px rgba(0, 0, 0, 0.12);
@@ -170,23 +169,6 @@
     filter:
         drop-shadow(0 22px 28px rgba(0, 0, 0, 0.38))
         drop-shadow(0 0 24px rgba(255, 255, 255, 0.18));
-}
-
-.bob-model-book-frame.is-locked .bob-model-book-stage img {
-    filter:
-        blur(2px)
-        contrast(1.1)
-        drop-shadow(0 22px 28px rgba(0, 0, 0, 0.38));
-    image-rendering: pixelated;
-    opacity: 0.62;
-    transform: scale(1.04);
-}
-
-.bob-model-book-frame.is-locked .bob-model-book-stage::after {
-    z-index: 2;
-    background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.36)),
-        repeating-linear-gradient(45deg, transparent 0 8px, rgba(255, 255, 255, 0.055) 9px 10px);
 }
 
 .bob-model-book-lock {
@@ -295,7 +277,7 @@
 }
 
 .bob-model-book-grid .bob-model-book-stage {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--team-surface-strong) 92%, white), var(--team-surface));
+    background: linear-gradient(180deg, color-mix(in srgb, var(--team-surface-strong) 92%, #fff), var(--team-surface));
     box-shadow:
         inset 0 0 0 1px var(--team-border),
         0 18px 54px rgba(0, 0, 0, 0.1);

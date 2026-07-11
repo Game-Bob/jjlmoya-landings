@@ -57,6 +57,7 @@
     --team-surface: #fff;
     --team-surface-strong: #f6f2ea;
     --team-border: rgba(16, 19, 24, 0.14);
+    --team-gold: #b47a00;
 }
 
 .theme-dark .team-landing {

@@ -80,6 +80,12 @@ export const pageContent = {
         text: 'Detrás de GameBob hay un desarrollador en solitario diseñando, construyendo, traduciendo y manteniendo todo desde Mallorca. El objetivo es simple: crear herramientas que sean útiles, visuales, rápidas y agradables de usar.',
         island: 'Mallorca'
     },
+    humanTouch: {
+        textBefore: 'Bob decidió que la empatía debía ser parte de esta página porque «los humanos conectan con humanos». Así que ordenó crear esta sección y, como sabe que padecemos de déficit de atención, exigió llenarla de animaciones y luces ',
+        wordWithRagebait: 'vrillantes',
+        textAfter: '.',
+        ragebaitExplanation: 'Que todo el mundo se relaje: la «v» de vrillantes está puesta aposta. La junta felina asegura que señalar erratas aumenta las visitas un 400%.'
+    },
     translationComic: {
         eyebrow: 'El origen',
         title: 'Bob vio el mapa del mundo y tomó una decisión empresarial.',
@@ -88,7 +94,7 @@ export const pageContent = {
         humanAssignment: 'El humano entiende el encargo.',
         languagesLabel: 'Marcadores de posición de idiomas compatibles',
         text: 'GameBob se traduce con asistencia de IA. No hablo todos los idiomas del mundo. Prefiero hacer que las herramientas estén disponibles en todo el mundo, incluso si algunas traducciones son imperfectas, en lugar de mantener todo bloqueado en un solo idioma.',
-        quote: 'Más idiomas. Más humanos. Más comida.'
+        quote: 'Más trabajo. Más dinero. Más comida.'
     },
     productManifesto: {
         eyebrow: 'Filosofía de producto',

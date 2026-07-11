@@ -1,0 +1,71 @@
+---
+interface Scene {
+    number: string;
+    label: string;
+    title: string;
+    text: string;
+    visual: string;
+    asset: { src: string; width: number; height: number };
+    assetAlt: string;
+    formula: { label: string; asset: { src: string; width: number; height: number } }[];
+}
+
+interface Props {
+    scene: Scene;
+}
+
+const { scene } = Astro.props;
+---
+
+<article
+    class={`master-plan-scene master-plan-scene-${scene.visual}`}
+>
+    <div class="master-plan-art" aria-hidden="true">
+        <span class="master-plan-frame-label">
+            {scene.number}
+        </span>
+        <span class="master-plan-placeholder">
+            <img
+                class="master-plan-asset"
+                src={scene.asset.src}
+                width={scene.asset.width}
+                height={scene.asset.height}
+                alt={scene.assetAlt}
+                loading="lazy"
+            />
+        </span>
+    </div>
+    <div class="master-plan-copy">
+        <p class="master-plan-kicker">{scene.label}</p>
+        <h3>{scene.title}</h3>
+        {scene.formula && (
+            <div class="master-plan-equation">
+                <span class="master-plan-equation-term">
+                    <img
+                        src={scene.formula[0].asset.src}
+                        width={scene.formula[0].asset.width}
+                        height={scene.formula[0].asset.height}
+                        alt={scene.formula[0].label}
+                        loading="lazy"
+                    />
+                </span>
+                <span
+                    class="master-plan-equation-arrow"
+                    aria-hidden="true"
+                >
+                    &gt;
+                </span>
+                <span class="master-plan-equation-term">
+                    <img
+                        src={scene.formula[1].asset.src}
+                        width={scene.formula[1].asset.width}
+                        height={scene.formula[1].asset.height}
+                        alt={scene.formula[1].label}
+                        loading="lazy"
+                    />
+                </span>
+            </div>
+        )}
+        <p>{scene.text}</p>
+    </div>
+</article>

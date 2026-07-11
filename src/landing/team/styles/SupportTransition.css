@@ -1,4 +1,6 @@
 .support-transition {
+    --support-transition-inverse: #fff;
+
     position: relative;
     padding-block: clamp(3rem, 8vw, 6rem);
 }
@@ -24,7 +26,7 @@
     border-radius: 999px;
     padding: 0.6rem 1.6rem;
     background: var(--team-pink);
-    color: #ffffff;
+    color: var(--support-transition-inverse);
     font-size: 0.95rem;
     font-weight: var(--font-weight-bold, 800);
     text-decoration: none;
@@ -36,7 +38,7 @@
 }
 
 .support-transition-link:hover {
-    background: color-mix(in srgb, var(--team-pink) 85%, #ffffff);
+    background: color-mix(in srgb, var(--team-pink) 85%, #fff);
     box-shadow: 0 12px 32px color-mix(in srgb, var(--team-pink) 50%, transparent);
     transform: translateY(-2px);
 }
@@ -144,16 +146,20 @@
         opacity: 0;
         transform: translate(0, 0) scale(0.5) rotate(-10deg);
     }
+
     12% {
         opacity: 0.85;
     }
+
     45% {
         opacity: 0.6;
         transform: translate(-1.5rem, -3rem) scale(1) rotate(15deg);
     }
+
     80% {
         opacity: 0;
     }
+
     100% {
         opacity: 0;
         transform: translate(-2.2rem, -6rem) scale(0.7) rotate(-20deg);
@@ -165,16 +171,20 @@
         opacity: 0;
         transform: translate(0.5rem, 0.2rem) scale(0.4) rotate(5deg);
     }
+
     15% {
         opacity: 0.9;
     }
+
     50% {
         opacity: 0.55;
         transform: translate(1.8rem, -2.8rem) scale(0.9) rotate(-15deg);
     }
+
     85% {
         opacity: 0;
     }
+
     100% {
         opacity: 0;
         transform: translate(0.8rem, -5.5rem) scale(0.65) rotate(10deg);
@@ -186,16 +196,20 @@
         opacity: 0;
         transform: translate(-0.3rem, 0.4rem) scale(0.35) rotate(-5deg);
     }
+
     18% {
         opacity: 0.8;
     }
+
     40% {
         opacity: 0.5;
         transform: translate(-0.8rem, -2.5rem) scale(0.95) rotate(10deg);
     }
+
     82% {
         opacity: 0;
     }
+
     100% {
         opacity: 0;
         transform: translate(-3rem, -6.5rem) scale(0.6) rotate(-15deg);
@@ -208,7 +222,7 @@
     }
 
     50% {
-        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+        border-radius: 30% 60% 70% 40% / 50% 60% 30%;
     }
 }
 
