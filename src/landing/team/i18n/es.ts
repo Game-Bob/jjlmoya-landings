@@ -25,13 +25,13 @@ export const pageContent = {
         members: {
             bob: {
                 name: 'Bob',
-                role: 'Gato Director Ejecutivo',
-                status: 'Nivel de autoridad: Absoluto. Comedor profesional.',
+                role: 'Dueña de Todo',
+                status: 'Nivel de autoridad: Absoluto. Comedora profesional.',
                 dossier: 'Máxima autoridad. Revisa la estrategia, la asignación de comida y si el rumbo actual merece un parpadeo.'
             },
             terra: {
                 name: 'Terra',
-                role: 'La Matriarach',
+                role: 'La Matriarca',
                 status: 'El origen. Mira fijamente el código hasta que se siente juzgado.',
                 dossier: 'Presencia senior. Mantiene a la junta equilibrada emocionalmente y audita en silencio decisiones sospechosas.'
             },

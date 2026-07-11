@@ -2,7 +2,8 @@
     --support-transition-inverse: #fff;
 
     position: relative;
-    padding-block: clamp(3rem, 8vw, 6rem);
+    padding-top: clamp(3rem, 8vw, 6rem);
+    padding-bottom: clamp(6rem, 15vw, 10rem);
 }
 
 .support-transition-layout {
@@ -279,6 +280,11 @@
     .support-transition-layout {
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+
+    .support-transition-content {
+        align-items: center;
+        text-align: center;
     }
 
     .support-transition-visual {

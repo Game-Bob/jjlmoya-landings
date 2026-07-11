@@ -3,16 +3,27 @@
 
     position: relative;
     overflow: hidden;
+    padding-bottom: clamp(7rem, 12vw, 9rem);
 }
 
-.human-touch::before,
-.human-touch::after {
+.human-touch-bg-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    contain: paint;
+    transform: translate3d(0, 0, 0);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.human-touch-bg-wrap::before,
+.human-touch-bg-wrap::after {
     position: absolute;
     pointer-events: none;
     content: "";
 }
 
-.human-touch::before {
+.human-touch-bg-wrap::before {
     inset: -15%;
     background:
         radial-gradient(circle at 15% 25%, var(--team-pink) 0%, transparent 35%),
@@ -25,14 +36,14 @@
         human-touch-bg-pulse 0.45s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
 }
 
-.human-touch.is-partying::before {
+.human-touch.is-partying .human-touch-bg-wrap::before {
     opacity: 1;
     animation:
         human-touch-bg-move 1.5s linear infinite,
         human-touch-bg-pulse 0.18s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
 }
 
-.human-touch::after {
+.human-touch-bg-wrap::after {
     inset: -10%;
     background:
         linear-gradient(105deg, transparent 0 44%, var(--team-mint) 45% 46%, transparent 47%),
@@ -42,7 +53,7 @@
     animation: human-touch-lasers 3s ease-in-out infinite alternate;
 }
 
-.human-touch.is-partying::after {
+.human-touch.is-partying .human-touch-bg-wrap::after {
     opacity: 0.74;
     animation-duration: 0.42s;
     mix-blend-mode: screen;
@@ -317,7 +328,7 @@
     position: absolute;
     right: clamp(1.2rem, 6vw, 6.5rem);
     bottom: clamp(1.4rem, 7vw, 5rem);
-    z-index: 2;
+    z-index: 0;
     width: clamp(12rem, 26vw, 22rem);
     height: clamp(12rem, 26vw, 22rem);
     pointer-events: none;
@@ -760,15 +771,14 @@
 
 .human-touch-links a {
     display: inline-flex;
-    min-height: 2.7rem;
+    width: 2.8rem;
+    height: 2.8rem;
     align-items: center;
+    justify-content: center;
     border: 1px solid color-mix(in srgb, var(--team-mint) 58%, var(--team-border));
-    border-radius: 999px;
-    padding: 0.55rem 0.9rem;
+    border-radius: 12px;
     background: color-mix(in srgb, var(--team-surface) 78%, transparent);
     color: var(--team-ink);
-    font-size: 0.9rem;
-    font-weight: var(--font-weight-bold, 800);
     text-decoration: none;
     box-shadow: 0 0 26px color-mix(in srgb, var(--team-mint) 16%, transparent);
     transition:
@@ -1188,3 +1198,97 @@
         margin-top: 0.5rem;
     }
 }
+
+.human-touch-border-player {
+    display: none;
+}
+
+@media (max-width: 860px) {
+    .human-touch {
+        overflow: visible;
+    }
+
+    .human-touch-party-player {
+        display: none !important;
+    }
+
+    .human-touch-border-player {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 6px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+    }
+
+    .human-touch-border-player.top-border-player {
+        top: 0;
+    }
+
+    .human-touch-border-player.bottom-border-player {
+        bottom: 0;
+    }
+
+    .human-touch-border-progress-bar {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+    }
+
+    .human-touch-border-progress-bar span {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--team-pink), var(--team-mint), var(--team-gold));
+        box-shadow: 0 0 10px var(--team-mint);
+        width: 0%;
+    }
+
+    .human-touch-border-toggle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 110;
+        display: grid;
+        place-items: center;
+        width: 2.4rem;
+        aspect-ratio: 1;
+        border: 1px solid var(--team-mint);
+        border-radius: 8px;
+        background: rgba(24, 24, 27, 0.92);
+        color: var(--team-ink);
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+        transition:
+            transform 0.15s ease,
+            background-color 0.15s ease;
+    }
+
+    .human-touch-border-toggle:active {
+        transform: translate(-50%, -50%) scale(0.92);
+    }
+
+    .border-toggle-icon {
+        width: 0;
+        height: 0;
+        margin-left: 0.12rem;
+        border-top: 0.45rem solid transparent;
+        border-bottom: 0.45rem solid transparent;
+        border-left: 0.68rem solid var(--team-mint);
+    }
+
+    .human-touch-border-toggle.is-playing .border-toggle-icon {
+        width: 0.68rem;
+        height: 0.9rem;
+        margin-left: 0;
+        border: 0;
+        background:
+            linear-gradient(90deg, var(--team-pink) 34%, transparent 34% 66%, var(--team-pink) 66% 100%);
+    }
+}
+
+
+

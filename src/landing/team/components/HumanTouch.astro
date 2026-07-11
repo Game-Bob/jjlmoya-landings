@@ -3,15 +3,16 @@ import tinderProfile from "../assets/jjlmoya/tinder-profile.webp";
 import tinderProfileWinked from "../assets/jjlmoya/tinder-profile-winked.webp";
 import bobPointingSprite from "../assets/bob-model-book/bob-pointing.webp";
 import bobTechnoTrack from "../assets/music/bob-techno.mp3";
+import { Icon } from "astro-icon/components";
 
 interface Props {
     t: {
+        eyebrow: string;
+        title: string;
         textBefore: string;
         wordWithRagebait: string;
         textAfter: string;
         ragebaitExplanation: string;
-        eyebrow: string;
-        title: string;
         chipsLabel: string;
         boardLabel: string;
         alert: string;
@@ -38,17 +39,52 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section class="team-section human-touch" aria-labelledby="human-touch-title" data-human-touch>
-    <div class="human-touch-party-player" aria-label={t.partyPlayer.audioLabel}>
-        <audio class="human-touch-audio" preload="metadata" data-human-touch-audio>
-            <source src={bobTechnoTrack} type="audio/mpeg" />
-        </audio>
+<section
+    class="team-section human-touch"
+    aria-labelledby="human-touch-title"
+    data-human-touch
+>
+    <div class="human-touch-bg-wrap" aria-hidden="true">
+        <div class="human-touch-equalizer">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <audio
+        src={bobTechnoTrack}
+        data-human-touch-audio
+        class="human-touch-audio"
+        loop
+    ></audio>
+
+    <div class="human-touch-border-player top-border-player" aria-label={t.partyPlayer.audioLabel}>
+        <button
+            class="human-touch-border-toggle"
+            type="button"
+            data-human-touch-toggle
+            data-play-label={t.partyPlayer.playLabel}
+            data-pause-label={t.partyPlayer.pauseLabel}
+            aria-label={t.partyPlayer.playLabel}
+        >
+            <span class="border-toggle-icon"></span>
+        </button>
+        <div class="human-touch-border-progress-bar" data-human-touch-seek aria-hidden="true">
+            <span data-human-touch-progress></span>
+        </div>
+    </div>
+
+    <div
+        class="human-touch-party-player"
+        aria-label={t.partyPlayer.audioLabel}
+    >
         <button
             class="human-touch-player-toggle"
             type="button"
-            aria-label={t.partyPlayer.playLabel}
             data-play-label={t.partyPlayer.playLabel}
             data-pause-label={t.partyPlayer.pauseLabel}
+            aria-label={t.partyPlayer.playLabel}
             data-human-touch-toggle
         >
             <span class="human-touch-player-icon" aria-hidden="true"></span>
@@ -82,12 +118,6 @@ const { t } = Astro.props;
             <span data-human-touch-progress></span>
         </div>
         <span class="human-touch-player-time" data-human-touch-current aria-hidden="true">0:00</span>
-    </div>
-    <div class="human-touch-equalizer" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
     </div>
 
     <div class="team-landing-inner">
@@ -179,15 +209,37 @@ const { t } = Astro.props;
                     <a
                         href="https://es.linkedin.com/in/jjlmoya"
                         target="_blank"
-                        rel="noreferrer">LinkedIn</a
+                        rel="noreferrer"
+                        aria-label="LinkedIn"
                     >
+                        <Icon name="mdi:linkedin" style="width: 24px; height: 24px;" />
+                    </a>
                     <a
                         href="https://github.com/jjlmoya"
                         target="_blank"
-                        rel="noreferrer">GitHub</a
+                        rel="noreferrer"
+                        aria-label="GitHub"
                     >
+                        <Icon name="mdi:github" style="width: 24px; height: 24px;" />
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="human-touch-border-player bottom-border-player" aria-label={t.partyPlayer.audioLabel}>
+        <button
+            class="human-touch-border-toggle"
+            type="button"
+            data-human-touch-toggle
+            data-play-label={t.partyPlayer.playLabel}
+            data-pause-label={t.partyPlayer.pauseLabel}
+            aria-label={t.partyPlayer.playLabel}
+        >
+            <span class="border-toggle-icon"></span>
+        </button>
+        <div class="human-touch-border-progress-bar" data-human-touch-seek aria-hidden="true">
+            <span data-human-touch-progress></span>
         </div>
     </div>
 </section>
@@ -195,17 +247,19 @@ const { t } = Astro.props;
 <script>
     const humanTouch = document.querySelector<HTMLElement>('[data-human-touch]');
     const humanTouchAudio = document.querySelector<HTMLAudioElement>('[data-human-touch-audio]');
-    const humanTouchToggle = document.querySelector<HTMLButtonElement>('[data-human-touch-toggle]');
-    const humanTouchProgress = document.querySelector<HTMLElement>('[data-human-touch-progress]');
-    const humanTouchSeek = document.querySelector<HTMLElement>('[data-human-touch-seek]');
+    const humanTouchToggles = document.querySelectorAll<HTMLButtonElement>('[data-human-touch-toggle]');
+    const humanTouchProgresses = document.querySelectorAll<HTMLElement>('[data-human-touch-progress]');
+    const humanTouchSeeks = document.querySelectorAll<HTMLElement>('[data-human-touch-seek]');
     const humanTouchCurrent = document.querySelector<HTMLElement>('[data-human-touch-current]');
 
-    humanTouchSeek?.addEventListener('click', (event) => {
-        if (!humanTouchAudio || !humanTouchSeek || !humanTouchAudio.duration) return;
+    humanTouchSeeks.forEach((seek) => {
+        seek.addEventListener('click', (event) => {
+            if (!humanTouchAudio || !seek || !humanTouchAudio.duration) return;
 
-        const bounds = humanTouchSeek.getBoundingClientRect();
-        const ratio = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
-        humanTouchAudio.currentTime = ratio * humanTouchAudio.duration;
+            const bounds = seek.getBoundingClientRect();
+            const ratio = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
+            humanTouchAudio.currentTime = ratio * humanTouchAudio.duration;
+        });
     });
 
     const formatAudioTime = (seconds: number) => {
@@ -223,40 +277,50 @@ const { t } = Astro.props;
         const currentTime = humanTouchAudio.currentTime || 0;
         const progress = duration > 0 ? currentTime / duration * 100 : 0;
 
-        if (humanTouchProgress) humanTouchProgress.style.inlineSize = `${progress}%`;
+        humanTouchProgresses.forEach((el) => {
+            el.style.inlineSize = `${progress}%`;
+        });
         if (humanTouchCurrent) humanTouchCurrent.textContent = formatAudioTime(currentTime);
     };
 
     humanTouchAudio?.addEventListener('play', () => {
         humanTouch?.classList.add('is-partying');
-        humanTouchToggle?.classList.add('is-playing');
-        humanTouchToggle?.setAttribute('aria-label', humanTouchToggle.dataset.pauseLabel ?? '');
+        humanTouchToggles.forEach((btn) => {
+            btn.classList.add('is-playing');
+            btn.setAttribute('aria-label', btn.dataset.pauseLabel ?? '');
+        });
     });
 
     humanTouchAudio?.addEventListener('pause', () => {
         humanTouch?.classList.remove('is-partying');
-        humanTouchToggle?.classList.remove('is-playing');
-        humanTouchToggle?.setAttribute('aria-label', humanTouchToggle.dataset.playLabel ?? '');
+        humanTouchToggles.forEach((btn) => {
+            btn.classList.remove('is-playing');
+            btn.setAttribute('aria-label', btn.dataset.playLabel ?? '');
+        });
     });
 
     humanTouchAudio?.addEventListener('ended', () => {
         humanTouch?.classList.remove('is-partying');
-        humanTouchToggle?.classList.remove('is-playing');
-        humanTouchToggle?.setAttribute('aria-label', humanTouchToggle.dataset.playLabel ?? '');
+        humanTouchToggles.forEach((btn) => {
+            btn.classList.remove('is-playing');
+            btn.setAttribute('aria-label', btn.dataset.playLabel ?? '');
+        });
         updatePlayer();
     });
 
     humanTouchAudio?.addEventListener('loadedmetadata', updatePlayer);
     humanTouchAudio?.addEventListener('timeupdate', updatePlayer);
 
-    humanTouchToggle?.addEventListener('click', () => {
-        if (!humanTouchAudio) return;
+    humanTouchToggles.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            if (!humanTouchAudio) return;
 
-        if (humanTouchAudio.paused) {
-            void humanTouchAudio.play();
-            return;
-        }
+            if (humanTouchAudio.paused) {
+                void humanTouchAudio.play();
+                return;
+            }
 
-        humanTouchAudio.pause();
+            humanTouchAudio.pause();
+        });
     });
 </script>

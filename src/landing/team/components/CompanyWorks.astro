@@ -11,8 +11,6 @@ interface Props {
         eyebrow: string;
         title: string;
         text: string;
-        secretDossier: string;
-        closeDossier: string;
         members: {
             bob: { name: string; role: string; status: string; dossier: string };
             terra: { name: string; role: string; status: string; dossier: string };
@@ -32,9 +30,7 @@ const members = [
         name: t.members.bob.name,
         role: t.members.bob.role,
         status: t.members.bob.status,
-        dossier: t.members.bob.dossier,
         hierarchy: 'chief',
-        mark: 'B',
         sprite: bobSprite,
     },
     {
@@ -42,9 +38,7 @@ const members = [
         name: t.members.terra.name,
         role: t.members.terra.role,
         status: t.members.terra.status,
-        dossier: t.members.terra.dossier,
         hierarchy: 'orbit orbit-terra',
-        mark: 'T',
         sprite: terraSprite,
     },
     {
@@ -52,9 +46,7 @@ const members = [
         name: t.members.ambar.name,
         role: t.members.ambar.role,
         status: t.members.ambar.status,
-        dossier: t.members.ambar.dossier,
         hierarchy: 'orbit orbit-ambar',
-        mark: 'A',
         sprite: ambarSprite,
     },
     {
@@ -62,9 +54,7 @@ const members = [
         name: t.members.ambarChiquilla.name,
         role: t.members.ambarChiquilla.role,
         status: t.members.ambarChiquilla.status,
-        dossier: t.members.ambarChiquilla.dossier,
         hierarchy: 'orbit orbit-chiquilla',
-        mark: 'AC',
         sprite: ambarChiquillaSprite,
     },
     {
@@ -72,9 +62,7 @@ const members = [
         name: t.members.drac.name,
         role: t.members.drac.role,
         status: t.members.drac.status,
-        dossier: t.members.drac.dossier,
         hierarchy: 'orbit orbit-drac',
-        mark: 'D',
         sprite: dracSprite,
     },
     {
@@ -82,9 +70,7 @@ const members = [
         name: t.members.jj.name,
         role: t.members.jj.role,
         status: t.members.jj.status,
-        dossier: t.members.jj.dossier,
         hierarchy: 'human',
-        mark: 'JJ',
         sprite: jjSprite,
     },
 ];
@@ -98,18 +84,11 @@ const members = [
             {t.text}
         </p>
 
-        <div class="company-works-system" data-company-grid>
+        <div class="company-works-system">
             <div class="company-works-orbit-ring" aria-hidden="true"></div>
             {
                 members.map((member) => (
-                    <button
-                        class={`company-works-node company-works-node-${member.hierarchy}`}
-                        type="button"
-                        data-dossier-name={member.name}
-                        data-dossier-role={member.role}
-                        data-dossier-status={member.status}
-                        data-dossier-copy={member.dossier}
-                    >
+                    <div class={`company-works-node company-works-node-${member.hierarchy}`}>
                         <span class="company-works-sprite" data-member={member.id} aria-hidden="true">
                             <img
                                 src={member.sprite.src}
@@ -124,57 +103,9 @@ const members = [
                             <span class="company-works-role">{member.role}</span>
                             <span class="company-works-status">{member.status}</span>
                         </span>
-                    </button>
+                    </div>
                 ))
             }
         </div>
     </div>
-
-    <div class="company-works-focus" data-company-focus></div>
-    <aside class="company-works-drawer" data-company-drawer aria-hidden="true">
-        <button class="company-works-drawer-close" type="button" data-company-close aria-label={t.closeDossier}>×</button>
-        <p class="company-works-drawer-eyebrow">{t.secretDossier}</p>
-        <h3 data-company-drawer-name></h3>
-        <p class="company-works-drawer-role" data-company-drawer-role></p>
-        <p class="company-works-drawer-status" data-company-drawer-status></p>
-        <p class="company-works-drawer-copy" data-company-drawer-copy></p>
-    </aside>
 </section>
-
-<script>
-    const drawer = document.querySelector<HTMLElement>('[data-company-drawer]');
-    const closeButton = document.querySelector<HTMLButtonElement>('[data-company-close]');
-    const focusLayer = document.querySelector<HTMLElement>('[data-company-focus]');
-    const closeDrawer = () => {
-        drawer?.classList.remove('is-open');
-        drawer?.setAttribute('aria-hidden', 'true');
-        focusLayer?.classList.remove('is-drawer-open');
-    };
-
-    document.querySelectorAll<HTMLButtonElement>('[data-dossier-name]').forEach((card) => {
-        card.addEventListener('mouseenter', () => {
-            focusLayer?.classList.add('is-active');
-            card.classList.add('is-focused');
-        });
-
-        card.addEventListener('mouseleave', () => {
-            focusLayer?.classList.remove('is-active');
-            card.classList.remove('is-focused');
-        });
-
-        card.addEventListener('click', () => {
-            if (!drawer) return;
-
-            drawer.querySelector('[data-company-drawer-name]')!.textContent = card.dataset.dossierName ?? '';
-            drawer.querySelector('[data-company-drawer-role]')!.textContent = card.dataset.dossierRole ?? '';
-            drawer.querySelector('[data-company-drawer-status]')!.textContent = card.dataset.dossierStatus ?? '';
-            drawer.querySelector('[data-company-drawer-copy]')!.textContent = card.dataset.dossierCopy ?? '';
-            drawer.classList.add('is-open');
-            drawer.setAttribute('aria-hidden', 'false');
-            focusLayer?.classList.add('is-drawer-open');
-        });
-    });
-
-    closeButton?.addEventListener('click', closeDrawer);
-    focusLayer?.addEventListener('click', closeDrawer);
-</script>
