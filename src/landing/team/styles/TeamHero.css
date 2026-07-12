@@ -122,7 +122,7 @@
     --hero-window-shadow-color: rgba(16, 19, 24, 0.08);
     --hero-window-glow-color-1: color-mix(in srgb, var(--team-mint) 10%, transparent);
     --hero-window-glow-color-2: color-mix(in srgb, var(--team-pink) 10%, transparent);
-    --hero-window-bg: #ffffff;
+    --hero-window-bg: #fff;
     --hero-window-header-bg: #f4f4f5;
     --hero-window-header-border: color-mix(in srgb, var(--team-mint) 15%, var(--team-border));
 }
