@@ -7,10 +7,13 @@
     "exports": {
         ".": "./src/index.ts",
         "./entries": "./src/entries.ts",
+        "./data": "./src/data.ts",
+        "./runtime/*": "./src/landing/*/runtime.ts",
         "./version": "./src/version.ts"
     },
     "files": [
         "src",
+        "!src/pages",
         "scripts"
     ],
     "publishConfig": {
